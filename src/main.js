@@ -2,11 +2,7 @@
 
 // coordinate system: y is vertical,
 import * as THREE from '../vendor/build/three.module.js';
-import { FirstPersonControls} from '../vendor/examples/jsm/controls/FirstPersonControls.js';
 import { PointerLockControls } from '../vendor/examples/jsm/controls/PointerLockControls.js';
-
-
-
 //import { OrbitControls } from '../vendor/examples/jsm/controls/OrbitControls.js';
 
 function main() {
@@ -82,12 +78,12 @@ function main() {
     {
         const loader = new THREE.CubeTextureLoader();
         const texture = loader.load([
-            '../app/assets/Skybox/px.png',
-            '../app/assets/Skybox/nx.png',
-            '../app/assets/Skybox/py.png',
-            '../app/assets/Skybox/ny.png',
-            '../app/assets/Skybox/pz.png',
-            '../app/assets/Skybox/nz.png',
+            '../assets/Skybox/px.png',
+            '../assets/Skybox/nx.png',
+            '../assets/Skybox/py.png',
+            '../assets/Skybox/ny.png',
+            '../assets/Skybox/pz.png',
+            '../assets/Skybox/nz.png',
         ]);
         scene.background = texture;
     }
@@ -104,19 +100,19 @@ function main() {
     const repH = floorW/10;
     const repV = floorH/10;
     const floorTexture = new THREE.TextureLoader();
-    const floorBase = floorTexture.load('../app/assets/Floor/Substance_Graph_BaseColor.jpg');
+    const floorBase = floorTexture.load('../assets/Floor/Substance_Graph_BaseColor.jpg');
     floorBase.wrapS = THREE.RepeatWrapping;
     floorBase.wrapT = THREE.RepeatWrapping;
     floorBase.repeat.set(repH, repV);
-    const floorRough = floorTexture.load('../app/assets/Floor/Substance_Graph_Roughness.jpg');
+    const floorRough = floorTexture.load('../assets/Floor/Substance_Graph_Roughness.jpg');
     floorRough.wrapS = THREE.RepeatWrapping;
     floorRough.wrapT = THREE.RepeatWrapping;
     floorRough.repeat.set(repH, repV);
-    const floorHeight = floorTexture.load('../app/assets/Floor/Substance_Graph_Height.jpg');
+    const floorHeight = floorTexture.load('../assets/Floor/Substance_Graph_Height.jpg');
     floorHeight.wrapS = THREE.RepeatWrapping;
     floorHeight.wrapT = THREE.RepeatWrapping;
     floorHeight.repeat.set(repH, repV);
-    const floorAO = floorTexture.load('../app/assets/Floor/Substance_Graph_AmbientOcclusion.jpg');
+    const floorAO = floorTexture.load('../assets/Floor/Substance_Graph_AmbientOcclusion.jpg');
     floorAO.wrapS = THREE.RepeatWrapping;
     floorAO.wrapT = THREE.RepeatWrapping;
     floorAO.repeat.set(repH, repV);
