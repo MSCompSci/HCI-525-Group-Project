@@ -1,15 +1,13 @@
-// Modified from https://threejs.org/manual/#en/backgrounds
-
 // coordinate system: y is vertical,
+ //x and z are ground plane
+
 import * as THREE from '../vendor/build/three.module.js';
 import { PointerLockControls } from '../vendor/examples/jsm/controls/PointerLockControls.js';
-//import { OrbitControls } from '../vendor/examples/jsm/controls/OrbitControls.js';
 
 function main() {
 
     // *****SCENE SETUP*****
     const canvas = document.querySelector('#c');
-    //const clock = new THREE.Clock();
 
     // renderer and shadows
     const renderer = new THREE.WebGLRenderer({ canvas });
@@ -18,7 +16,7 @@ function main() {
 
     // camera
     const fov = 75;
-    const aspect = 2;  // the canvas default
+    const aspect = 2; 
     const near = 0.1;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
@@ -31,9 +29,84 @@ function main() {
 
 
     // ***CONTROLS***
-    const controls = new PointerLockControls( camera, document.body );
+    const controls = new PointerLockControls( camera, document.body ); // new pointer controls for camera
 
-    
+    let immobile = true; // immobilize wasd on startup
+
+    const prevKeyState = { // key states
+        w: false,
+        a: false,
+        s: false,
+        d: false
+    };
+
+    document.addEventListener("keydown", function onPress(e) { // listen for key presses
+        if (e.key === "w") {
+            prevKeyState.w = true;
+        }
+        else if (e.key === "a") {
+            prevKeyState.a = true;
+        }
+        else if (e.key === "s") {
+            prevKeyState.s = true;
+        }
+        else if (e.key === "d") {
+            prevKeyState.d = true;
+        }
+
+    });
+
+    document.addEventListener("keyup", function onUp(e){ // listen for key releases
+        if (e.key === "w") {
+            prevKeyState.w = false;
+        }
+        else if (e.key === "a") {
+            prevKeyState.a = false;
+        }
+        else if (e.key === "s") {
+            prevKeyState.s = false;
+        }
+        else if (e.key === "d") {
+            prevKeyState.d = false;
+        }
+    });
+
+    function controller(){ // wasd controls
+
+        // get direction camera is facing in world coords
+        let camDirRaw = new THREE.Vector3;
+        const speed = 0.06; 
+        camera.getWorldDirection(camDirRaw);
+
+        // account for x and y getting super small when looking directly up or down
+        if ((camDirRaw.x < .0001)&&(camDirRaw.x > -.0001)){
+            camDirRaw.x = .0002;
+        }
+        if ((camDirRaw.z < .0001)&&(camDirRaw.z > -.0001)){
+            camDirRaw.z = .0002;
+        }
+
+        // set camera direction vector with constant height
+        let camDir = new THREE.Vector3(camDirRaw.x, 0 ,camDirRaw.z);
+
+        // move camera in correct direction
+        if (prevKeyState.w === true){
+            camera.position.addScaledVector(camDir, speed);
+        }
+        if (prevKeyState.s === true){
+            camDir.x = -(camDir.x);
+            camDir.z = -(camDir.z)
+            camera.position.addScaledVector(camDir, speed);
+        }
+        if (prevKeyState.a === true){
+            camera.translateX(-(speed));
+        }
+        if (prevKeyState.d === true){
+            camera.translateX(speed);
+        }
+    }
+
+    // Modified from https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
     const blocker = document.getElementById( 'blocker' );
     const instructions = document.getElementById( 'instructions' );
 
@@ -48,6 +121,8 @@ function main() {
         instructions.style.display = 'none';
         blocker.style.display = 'none';
 
+        immobile = false;
+
     } );
 
     controls.addEventListener( 'unlock', function () {
@@ -55,11 +130,11 @@ function main() {
         blocker.style.display = 'block';
         instructions.style.display = '';
 
+        immobile = true;
+
     } );
-
     scene.add( controls.getObject() );
-
-
+    // end modified section
 
     // lighting
     const color = 0xFFFFFF;
@@ -140,7 +215,7 @@ function main() {
     scene.add(floor);
 
     // *****RESPONSIVENESS AND RENDERING*****
-    function resizeRendererToDisplaySize(renderer) {
+    function resizeRendererToDisplaySize(renderer) { // function from https://threejs.org/manual/#en/responsive
         const canvas = renderer.domElement;
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
@@ -151,15 +226,17 @@ function main() {
         return needResize;
     }
 
-    function render() {
+    function render() { 
 
-        if (resizeRendererToDisplaySize(renderer)) {
+        if (resizeRendererToDisplaySize(renderer)) { // if loop from https://threejs.org/manual/#en/responsive
             const canvas = renderer.domElement;
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
             camera.updateProjectionMatrix();
-            //controls.handleResize();
         }
-        //controls.update( clock.getDelta() );
+        if (immobile === false){ //only allow controls if pointer is locked in browser
+            controller();
+        }
+        
         renderer.render(scene, camera);
 
         requestAnimationFrame(render);
@@ -167,8 +244,6 @@ function main() {
 
     requestAnimationFrame(render);
 }
-
-
 
 main();
 
