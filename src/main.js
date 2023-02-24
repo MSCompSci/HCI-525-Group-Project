@@ -13,7 +13,7 @@ function main() {
     const canvas = document.querySelector('#c');
 
     // renderer and shadows
-    const renderer = new THREE.WebGLRenderer({ canvas });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -32,14 +32,16 @@ function main() {
 
     // lighting
     const color = 0xFFFFFF;
-    const intensity = 1;
+    const intensity = 0.8;
     let light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(100, 100, 100);
+    light.position.set(-50, 70, -20);
     light.target.position.set(0,0,0);
     light.castShadow = true;
+    //const helper = new THREE.DirectionalLightHelper( light, 5 );
+    //scene.add( helper );
     scene.add(light);
 
-    light = new THREE.AmbientLight(0x404040);
+    light = new THREE.AmbientLight(0x404040, 0.9);
     scene.add(light);
 
     // skybox
@@ -90,11 +92,42 @@ function main() {
     // end modified section
 
     // *****FLOOR*****
-    const floor = new BUILDING.Floor(scene, 50, 90, 0.2, 
-        'assets/Floor/Substance_Graph_BaseColor.jpg', 
-        'assets/Floor/Substance_Graph_Roughness.jpg', 
-        'assets/Floor/Substance_Graph_Height.jpg', 
-        'assets/Floor/Substance_Graph_AmbientOcclusion.jpg');
+    const floorW = 50;
+    const floorL = 90;
+    const wallHeight = 15;
+    const floor = new BUILDING.Floor(scene, floorW, floorL, 0.6,
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Height.jpg',  
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg', 
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
+        );
+
+    const backWall = new BUILDING.Wall( scene, floorW, wallHeight, 1, 0.95,
+        'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
+        );
+    backWall.wall.translateZ(floorL/2-0.5);
+    const frontWall = new BUILDING.Wall( scene, floorW, wallHeight, 1, 0.95,
+        'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
+        );
+    frontWall.wall.translateZ(-(floorL/2-0.5));
+    const sideWallOne = new BUILDING.Wall( scene, floorL, wallHeight, 1, 0.95,
+        'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
+        );
+    sideWallOne.wall.translateX(floorW/2-0.5);
+    sideWallOne.wall.rotateY(-Math.PI / 2);
+    const sideWallTwo = new BUILDING.Wall( scene, floorL, wallHeight, 1, 0.95,
+        'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
+        'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
+        );
+    sideWallTwo.wall.translateX(-(floorW/2-0.5));
+    sideWallTwo.wall.rotateY(-Math.PI / 2);
 
     // *****RESPONSIVENESS AND RENDERING*****
     function resizeRendererToDisplaySize(renderer) { // function from https://threejs.org/manual/#en/responsive
