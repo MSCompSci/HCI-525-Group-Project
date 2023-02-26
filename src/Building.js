@@ -6,11 +6,10 @@ import {LoadingManager,
         PlaneGeometry, 
         MeshStandardMaterial, 
         BoxGeometry,
-        DoubleSide,
-        BackSide,
         FrontSide, 
-        ClampToEdgeWrapping,
-        Group} from '../vendor/build/three.module.js';
+        Group    
+    } from '../vendor/build/three.module.js';
+import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 
 class Floor {
     constructor(scene, w, l, roughnum, map, dispmap, roughmap, aomap){
@@ -91,4 +90,55 @@ class Wall {
     }
 }
 
-export {Floor, Wall};
+class Ceiling {
+    constructor(scene, w, l, roughnum, map, dispmap, roughmap, aomap, norm){
+        const loadManager = new LoadingManager();
+        const textureLoader = new TextureLoader(loadManager);
+        const textures = {
+            map: textureLoader.load(map),
+            displacementMap: textureLoader.load(dispmap),
+            roughnessMap: textureLoader.load(roughmap),
+            aoMap: textureLoader.load(aomap),
+            norm: textureLoader.load(norm)
+        }
+        function textureWrap (obj,w,l){
+            let repL = l/10;
+            let repW = w/10;
+            for (const val of Object.values(obj)){
+                val.wrapS = RepeatWrapping;
+                val.wrapT  = RepeatWrapping;
+                val.repeat.set(repW, repL);
+            }
+        }
+        textureWrap(textures, w, l);
+
+        this.floor = new Mesh(new PlaneGeometry(w, l), new MeshStandardMaterial(
+            {
+                map: textures.map,
+                displacementMap: textures.displacementMap,
+                roughnessMap: textures.roughnessMap,
+                roughness: roughnum,
+                aoMap: textures.aoMap,
+                normalMap: textures.norm
+            }
+        ));
+        this.floor.rotation.x = (-3*(Math.PI))/2;
+        this.floor.castShadow = false;
+        this.floor.receiveShadow = false;
+        scene.add(this.floor);
+    }
+}
+
+class LightFixture {
+    constructor(scene, model){
+        const loader = new GLTFLoader();
+        loader.load(model, function(gltf){
+            scene.add(gltf.scene);
+        }, undefined, function ( error ) {
+
+            console.error( error );
+        });
+    }
+}
+
+export {Floor, Wall, Ceiling, LightFixture};
