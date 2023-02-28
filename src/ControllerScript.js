@@ -103,15 +103,6 @@ class ControllerScript {
                 if (collision===false){
                     camera.translateX(-(speed));
                 }
-               /* if (collisionV.x<0){
-                    
-                    if(camDir.z<0){
-                        console.log("collision");
-                        speed=0;
-                        console.log(camDir.x, camDir.z);
-                    }
-                }
-                */
             }
             if (prevKeyState.d === true){
                 if (collision===false){

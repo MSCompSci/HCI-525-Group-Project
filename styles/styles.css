@@ -1,14 +1,107 @@
+html {
+  margin: 0;
+}
+
 body {
-    /* remove margins and scroll bars */
-    margin: 0;
-    overflow: hidden;
-  
-    /* style text */
-    text-align: center;
-    font-size: 12px;
-    font-family: Sans-Serif;
-  
-    /* color text */
-    color: #444;
-  }
-  
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  font-size: 12px;
+  font-family: Sans-Serif;
+  height: 100%;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  border: solid gray 1p;
+  border-radius: 20px;
+  background-color: rgb(173, 216, 230);
+}
+
+.nav-link:hover {
+  background-color: rgb(139, 170, 180);
+}
+
+p {
+  padding-bottom: 20px;
+  line-height: 150%;
+  font-size: 1.2em;
+}
+
+/*3D app*/
+#load-screen {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loading-prog {
+  width: 80%;
+  min-height: 150px;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 5em;
+  border-radius: 50px;
+}
+
+#prog-bar {
+  width: 70%;
+  background-color: grey;
+  margin: 20px auto;
+
+}
+
+#bar-fill {
+  width: 1%;
+  height: 30px;
+  background-color: rgb(0, 41, 128);
+}
+
+#c {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: -5;
+}
+
+#blocker {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  display: none;
+}
+
+#instructions {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#instructionsBlock {
+  background-color: white;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+
+
+
+
+
+

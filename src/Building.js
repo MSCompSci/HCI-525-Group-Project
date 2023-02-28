@@ -12,8 +12,7 @@ import {LoadingManager,
 import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 
 class Floor {
-    constructor(scene, w, l, roughnum, map, dispmap, roughmap, aomap){
-        const loadManager = new LoadingManager();
+    constructor(scene, loadManager, w, l, roughnum, map, dispmap, roughmap, aomap){
         const textureLoader = new TextureLoader(loadManager);
         const textures = {
             map: textureLoader.load(map),
@@ -49,8 +48,8 @@ class Floor {
 }
 
 class Wall {
-    constructor(scene, w, h, d, roughnum,  map, roughmap, aomap){
-        const loadManager = new LoadingManager();
+    constructor(scene, loadManager, w, h, d, roughnum,  map, roughmap, aomap){
+        
         const textureLoader = new TextureLoader(loadManager);
         const textures = {
             map: textureLoader.load(map),
@@ -91,8 +90,7 @@ class Wall {
 }
 
 class Ceiling {
-    constructor(scene, w, l, roughnum, map, dispmap, roughmap, aomap, norm){
-        const loadManager = new LoadingManager();
+    constructor(scene, loadManager, w, l, roughnum, map, dispmap, roughmap, aomap, norm){
         const textureLoader = new TextureLoader(loadManager);
         const textures = {
             map: textureLoader.load(map),
