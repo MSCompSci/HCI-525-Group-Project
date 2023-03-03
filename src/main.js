@@ -6,6 +6,7 @@ import * as BUILDING from './Building.js';
 import { PointerLockControls } from '../vendor/examples/jsm/controls/PointerLockControls.js';
 import { ControllerScript } from './ControllerScript.js';
 import { CamCollisionBox } from './CollisionScript.js';
+import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 
 function main() {
 
@@ -16,11 +17,12 @@ function main() {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.gammaOutput = true;
+    renderer.gammaFactor = 2.2;
 
     // camera
-    const fov = 75;
+    const fov = 65;
     const aspect = 2; 
     const near = 0.1;
     const far = 100;
@@ -32,7 +34,8 @@ function main() {
      // ***CONTROLS***
      const controls = new PointerLockControls( camera, document.body ); // new pointer controls for camera
      const wasd = new ControllerScript(document, camera); // new wasd controls for movement
-         // player collision
+    
+     // player collision
     const camBox = new CamCollisionBox(camera);
 
     // Modified from https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
@@ -56,8 +59,11 @@ function main() {
     }
     // end modified section
 
+    
     // scene
     const scene = new THREE.Scene();
+    addListeners();
+    scene.add( controls.getObject() );
 
     // Loading
     const loadScreen = document.getElementById('load-screen');
@@ -65,9 +71,118 @@ function main() {
     const loadParagraph = document.getElementById("resource-load");
     let loadPercent;
     let width = 1;
-    const loadingManager = new THREE.LoadingManager()
-    loadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+    // loading managers
+    const loadingManager = new THREE.LoadingManager();
+    
+    // lighting
+    const color = 0xFFFFFF;
+    const intensity = 0.8;
+    let light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-50, 70, -20);
+    light.target.position.set(0,0,0);
+    light.castShadow = true;
+    scene.add(light);
+    light = new THREE.AmbientLight(0x404040, 1);
+    scene.add(light);
 
+    // skybox
+    {
+        const loader = new THREE.CubeTextureLoader(loadingManager);
+        const texture = loader.load([
+            'assets/Skybox/px.png',
+            'assets/Skybox/nx.png',
+            'assets/Skybox/py.png',
+            'assets/Skybox/ny.png',
+            'assets/Skybox/pz.png',
+            'assets/Skybox/nz.png',
+        ]);
+        scene.background = texture;
+    }
+
+
+    //**********BUILDING**********
+
+    // *****FLOOR*****
+    const floorW = 50;
+    const floorL = 90;
+    const wallHeight = 15;
+    const floor = new BUILDING.Floor(scene, loadingManager, floorW, floorL, 0.6,
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Height.jpg',  
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg', 
+        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
+        ); 
+    // *****CEILING*****
+   /* const ceiling = new BUILDING.Ceiling(scene, loadingManager, floorW, floorL, 0.6,
+        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_basecolor.jpg',
+        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_height.png',  
+        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_roughness.jpg', 
+        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_ambientOcclusion.jpg',
+        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_normal.jpg'
+        );
+    ceiling.floor.translateZ(-wallHeight); */
+
+
+    // *****WALLS*****
+    const walls = [
+            new BUILDING.Wall( scene, loadingManager, floorW, wallHeight, 1, 0.95,
+            'assets/Wall/marble_01_4k/marble_01_diff_4k.jpg', 
+            'assets/Wall/marble_01_4k/marble_01_rough_4k.jpg', 
+            'assets/Wall/marble_01_4k/marble_01_ao_4k.jpg',
+            'assets/Wall/marble_01_4k/marble_01_disp_4k.png'
+            ),
+            new BUILDING.Wall( scene, loadingManager, floorW, wallHeight, 1, 0.95,
+                'assets/Wall/marble_01_4k/marble_01_diff_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_rough_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_ao_4k.jpg',
+                'assets/Wall/marble_01_4k/marble_01_disp_4k.png'
+            ),
+            new BUILDING.Wall( scene, loadingManager, floorL, wallHeight, 1, 0.95,
+                'assets/Wall/marble_01_4k/marble_01_diff_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_rough_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_ao_4k.jpg',
+                'assets/Wall/marble_01_4k/marble_01_disp_4k.png'
+            ),
+
+            new BUILDING.Wall( scene, loadingManager, floorL, wallHeight, 1, 0.95,
+                'assets/Wall/marble_01_4k/marble_01_diff_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_rough_4k.jpg', 
+                'assets/Wall/marble_01_4k/marble_01_ao_4k.jpg',
+                'assets/Wall/marble_01_4k/marble_01_disp_4k.png'
+            )
+    ];
+
+    // wall positions
+    walls[0].wall.translateZ(floorL/2-0.5);
+    walls[1].wall.translateZ(-(floorL/2-0.5));
+    walls[2].wall.translateX(floorW/2-0.5);
+    walls[2].wall.rotateY(-Math.PI / 2);
+    walls[3].wall.translateX(-(floorW/2-0.5));
+    walls[3].wall.rotateY(-Math.PI / 2);
+
+    //*****ITEMS*****
+    const crouchingBoy = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/Crouch.gltf', 1, 1, 1, -.5,2.5,-.5,-Math.PI);
+    const angel = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/Angel.gltf', 1, 1, 1, 0, 2, 0,-Math.PI);
+    const david = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/David.gltf', 1, 1, 1, 2, 2, 2,-Math.PI);
+    const duke = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3,-Math.PI);
+    const madonna = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/Madonna.gltf', 1, 1, 1, 5, 2, 5,-Math.PI);
+    const pieta = new BUILDING.GLTFModel(scene, loadingManager, '../assets/Statues/Pieta.gltf', 1, 1, 1, -3, 2, -3,-Math.PI);
+    
+    //crouchingBoy.castShadow = true;
+    //*****COLLISION*****
+    const collidableObj = [
+        walls[0].wall,
+        walls[1].wall,
+        walls[2].wall,
+        walls[3].wall
+    ];
+    const collidables = camBox.setCollidables(collidableObj);
+
+
+
+
+    //LOADING MANAGER
+    loadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
         //console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         loadParagraph.textContent = "Loading " + itemsLoaded + "/" + itemsTotal + " items";
     };
@@ -90,133 +205,9 @@ function main() {
     };
     
     loadingManager.onError = function ( url ) {
-        //console.log( 'There was an error loading ' + url );
+        console.log( 'There was an error loading ' + url );
         loadParagraph.textContent = "Error loading :(";
     };
-    
-    
-    addListeners();
-    scene.add( controls.getObject() );
-    // lighting
-    const color = 0xFFFFFF;
-    const intensity = 0.8;
-    let light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(-50, 70, -20);
-    light.target.position.set(0,0,0);
-    light.castShadow = true;
-    scene.add(light);
-    light = new THREE.AmbientLight(0x404040, 1);
-    scene.add(light);
-
-    // skybox
-    /*{
-        const loader = new THREE.CubeTextureLoader();
-        const texture = loader.load([
-            'assets/Skybox/px.png',
-            'assets/Skybox/nx.png',
-            'assets/Skybox/py.png',
-            'assets/Skybox/ny.png',
-            'assets/Skybox/pz.png',
-            'assets/Skybox/nz.png',
-        ]);
-        scene.background = texture;
-    }*/
-
-
-   
-    
-
-
-
-
-
-
-
-    //**********BUILDING**********
-
-    // *****FLOOR*****
-    const floorW = 50;
-    const floorL = 90;
-    const wallHeight = 15;
-    const floor = new BUILDING.Floor(scene, loadingManager, floorW, floorL, 0.6,
-        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
-        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Height.jpg',  
-        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg', 
-        'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
-        ); 
-    // *****CEILING*****
-    const ceiling = new BUILDING.Ceiling(scene, loadingManager, floorW, floorL, 0.6,
-        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_basecolor.jpg',
-        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_height.png',  
-        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_roughness.jpg', 
-        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_ambientOcclusion.jpg',
-        'assets/Ceiling/Concrete_Ceiling_002_SD/Concrete_Ceiling_002_normal.jpg'
-        );
-    ceiling.floor.translateZ(-wallHeight);
-
-
-    // *****WALLS*****
-    const walls = [
-            new BUILDING.Wall( scene, loadingManager, floorW, wallHeight, 1, 0.95,
-            'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
-            ),
-            new BUILDING.Wall( scene, loadingManager, floorW, wallHeight, 1, 0.95,
-            'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
-            ),
-            new BUILDING.Wall( scene, loadingManager, floorL, wallHeight, 1, 0.95,
-            'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
-            ),
-
-            new BUILDING.Wall( scene, loadingManager, floorL, wallHeight, 1, 0.95,
-            'assets/Wall/Concrete_017_SD/Concrete_017_basecolor.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_roughness.jpg', 
-            'assets/Wall/Concrete_017_SD/Concrete_017_ambientOcclusion.jpg'
-            )
-    ];
-
-    // wall positions
-    walls[0].wall.translateZ(floorL/2-0.5);
-    walls[1].wall.translateZ(-(floorL/2-0.5));
-    walls[2].wall.translateX(floorW/2-0.5);
-    walls[2].wall.rotateY(-Math.PI / 2);
-    walls[3].wall.translateX(-(floorW/2-0.5));
-    walls[3].wall.rotateY(-Math.PI / 2);
-
-
-    //*****ITEMS*****
-
-
-    
-    const cube1 = new THREE.Mesh(
-        new THREE.BoxGeometry(5,5,5),
-        new THREE.MeshStandardMaterial({color: 0xff0000})
-    );
-    
-    cube1.position.set(3,2.5,0);
-    cube1.castShadow = true;
-    cube1.receiveShadow = true;
-    scene.add(cube1);
-    
-
-    //*****ITEM COLLISION*****
-    
-    const collidableObj = [
-        walls[0].wall,
-        walls[1].wall,
-        walls[2].wall,
-        walls[3].wall,
-        cube1
-
-    ];
-    const collidables = camBox.setCollidables(collidableObj);
-
-
 
 
 

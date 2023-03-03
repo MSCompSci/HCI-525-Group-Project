@@ -48,13 +48,14 @@ class Floor {
 }
 
 class Wall {
-    constructor(scene, loadManager, w, h, d, roughnum,  map, roughmap, aomap){
+    constructor(scene, loadManager, w, h, d, roughnum,  map, roughmap, aomap, disp){
         
         const textureLoader = new TextureLoader(loadManager);
         const textures = {
             map: textureLoader.load(map),
             roughnessMap: textureLoader.load(roughmap),
-            aoMap: textureLoader.load(aomap)
+            aoMap: textureLoader.load(aomap),
+            disp: textureLoader.load(disp)
         }
         function textureWrap (obj){
             for (const val of Object.values(obj)){
@@ -72,7 +73,8 @@ class Wall {
                 roughnessMap: textures.roughnessMap,
                 roughness: roughnum,
                 aoMap: textures.aoMap,
-                side: FrontSide
+                side: FrontSide,
+                displacementMap: textures.disp
             });
         const fillerMaterial = new MeshStandardMaterial({color: 0x000000});
         const wallOuter = new Mesh(new BoxGeometry(w, h, d), material);
@@ -139,4 +141,29 @@ class LightFixture {
     }
 }
 
-export {Floor, Wall, Ceiling, LightFixture};
+class GLTFModel {
+    constructor(scene, loadManager, model, scaleX, scaleY, scaleZ, posX, posY, posZ, rotation){
+        this.loader = new GLTFLoader(loadManager);
+        this.loader.load(model, function(gltf){
+            gltf.scene.scale.set(scaleX, scaleY, scaleZ); 
+            gltf.scene.position.set(posX,posY,posZ);
+            gltf.scene.rotateY(rotation);
+            gltf.scene.traverse( function( node ) {
+
+                if ( node.isMesh ) { 
+                    if ( node.isMesh || node.isLight ) node.castShadow = true;
+                    //if ( node.isMesh || node.isLight ) node.receiveShadow = true;
+                }
+
+            } );
+            gltf.castShadow = true;
+            gltf.receiveShadow = true;
+            scene.add(gltf.scene);
+        }, undefined, function ( error ) {
+
+            console.error( error );
+        });
+    }
+}
+
+export {Floor, Wall, Ceiling, LightFixture, GLTFModel};
