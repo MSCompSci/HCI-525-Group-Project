@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ratatouille - Skylight
+* source:	https://sketchfab.com/3d-models/ratatouille-skylight-4260d940f0a0474bacd90a489a328f0b
+* author:	Alexander James Gate (https://sketchfab.com/Alexjgate)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ratatouille - Skylight" (https://sketchfab.com/3d-models/ratatouille-skylight-4260d940f0a0474bacd90a489a328f0b) by Alexander James Gate (https://sketchfab.com/Alexjgate) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
