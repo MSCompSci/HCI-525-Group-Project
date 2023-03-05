@@ -1,8 +1,5 @@
 // coordinate system: y is vertical,
 //x and z are ground plane
-import { PointerLockControls } from '../vendor/examples/jsm/controls/PointerLockControls.js';
-import { ControllerScript } from './ControllerScript.js';
-import { CamCollisionBox } from './CollisionScript.js';
 import {LoadingManager, 
     TextureLoader, 
     RepeatWrapping, 
@@ -18,11 +15,13 @@ import {LoadingManager,
     AmbientLight,
     CubeTextureLoader,
     BoxGeometry,
-    Vector3,
-    Quaternion,
-} from '../vendor/build/three.module.js';
-import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
-import * as ENABLE3D from '../vendor/build/enable3d.ammoPhysics.0.25.3.min.js';
+    CircleGeometry,
+    MeshBasicMaterial
+} from 'three';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { ControllerScript } from './ControllerScript.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
 
 class MainApp {
     constructor() {
@@ -45,6 +44,15 @@ class MainApp {
         const far = 150;
         this.camera = new PerspectiveCamera(fov, aspect, near, far);
         this.camera.position.set(0,5,0);
+
+        // camera crossHairs
+        const crossHairsGeo = new CircleGeometry(.0035, 16);
+        const crossHairsMat = new MeshBasicMaterial({ color: 0xe6e6e6 });
+        crossHairsMat.transparent = true;
+        crossHairsMat.opacity = 0.45;
+        const crossHairs = new Mesh(crossHairsGeo, crossHairsMat);
+        crossHairs.position.set(0, 0, -.5);
+        this.camera.add(crossHairs);
 
         // scene
         this.scene = new Scene();
@@ -84,8 +92,8 @@ class MainApp {
         this.controls.addEventListener('unlock', this.addControlBlock.bind(this));
         this.scene.add(this.controls.getObject());
 
-        this.physics = new ENABLE3D.AmmoPhysics(this.scene);
-        this.physics.debug.enable(true)
+        //this.physics = new ENABLE3D.AmmoPhysics(this.scene);
+        //this.physics.debug.enable(true)
     }
 
     lockControls(){
@@ -142,12 +150,12 @@ class MainApp {
             world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
             world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
             world.gltfModel('assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .15, .15, .15, 0, wallHeight, 0, -Math.PI / 2, false),
-            world.gltfModel('../assets/Statues/Pieta.gltf', 1, 1, 1, -3, 2, -3, -Math.PI, true), // pieta
-            world.gltfModel('../assets/Statues/Madonna.gltf', 1, 1, 1, 5, 2, 5, -Math.PI, true), // madonna
-            world.gltfModel('../assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3, -Math.PI, true), // duke
-            world.gltfModel('../assets/Statues/David.gltf', 1, 1, 1, 2, 2, 2, -Math.PI, true), // david
-            world.gltfModel('../assets/Statues/Angel.gltf', 1, 1, 1, 0, 2, 0, -Math.PI, true), //angel
-            world.gltfModel('../assets/Statues/Crouch.gltf', 1, 1, 1, -.5, 2.5, -.5, -Math.PI, true) //crouching boy
+            world.gltfModel('assets/Statues/Pieta.gltf', 1, 1, 1, -3, 2, -3, -Math.PI, true), // pieta
+            world.gltfModel('assets/Statues/Madonna.gltf', 1, 1, 1, 5, 2, 5, -Math.PI, true), // madonna
+            world.gltfModel('assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3, -Math.PI, true), // duke
+            world.gltfModel('assets/Statues/David.gltf', 1, 1, 1, 2, 2, 2, -Math.PI, true), // david
+            world.gltfModel('assets/Statues/Angel.gltf', 1, 1, 1, 0, 2, 0, -Math.PI, true), //angel
+            world.gltfModel('assets/Statues/Crouch.gltf', 1, 1, 1, -.5, 2.5, -.5, -Math.PI, true) //crouching boy
             ]).then(models => {
                 // skybox
                 const sky = models[0]; 

@@ -1,10 +1,6 @@
 import {
     Vector3,
-    CircleGeometry,
-    MeshBasicMaterial,
-    Mesh,
-    Quaternion
-} from "../vendor/build/three.module.js";
+} from "three";
 
 class ControllerScript {
     constructor(dom, camera) {
@@ -14,20 +10,11 @@ class ControllerScript {
             s: false,
             d: false
         };
-        // camera crossHairs
-        const crossHairsGeo = new CircleGeometry(.0035, 16);
-        const crossHairsMat = new MeshBasicMaterial({ color: 0xe6e6e6 });
-        crossHairsMat.transparent = true;
-        crossHairsMat.opacity = 0.45;
-        const crossHairs = new Mesh(crossHairsGeo, crossHairsMat);
-        crossHairs.position.set(0, 0, -.5);
-        camera.add(crossHairs);
+
 
         // wasd event listeners
         this.eventListeners = this.addListeners(this.prevKeyState, dom);
-        this.rotation = new Quaternion();
         this.translation = new Vector3();
-        //this.phi = 0;
         this.theta = 0;
         this.camDirV = new Vector3;
     }
