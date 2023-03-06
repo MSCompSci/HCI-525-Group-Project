@@ -19,7 +19,8 @@ import {LoadingManager,
     MeshBasicMaterial,
     Clock,
     MeshLambertMaterial,
-    SphereGeometry 
+    SphereGeometry, 
+    CapsuleGeometry
 } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { ControllerScript } from './ControllerScript.js';
@@ -46,6 +47,10 @@ class MainApp {
         const far = 150;
         this.camera = new PerspectiveCamera(fov, aspect, near, far);
         this.camera.position.set(0,5,0);
+        
+
+        
+        
 
         // camera crossHairs
         const crossHairsGeo = new CircleGeometry(.0035, 16);
@@ -85,7 +90,7 @@ class MainApp {
 
         // ***CONTROLS***
         this.controls = new PointerLockControls(this.camera, document.body); // new pointer controls for camera
-        this.wasd = new ControllerScript(document, this.camera); // new wasd controls for movement
+        this.wasd = new ControllerScript(document); // new wasd controls for movement
         
         // immobilize controls on startup
         this.immobile = true;
@@ -138,24 +143,22 @@ class MainApp {
         const wallText = {
             base: 'assets/Wall/marble_01_1k/marble_01_diff_1k.jpg',
             rough: 'assets/Wall/marble_01_1k/marble_01_rough_1k.jpg',
-            ao: 'assets/Wall/marble_01_1k/marble_01_ao_1k.jpg',
-            disp: 'assets/Wall/marble_01_1k/marble_01_disp_1k.png'
+            ao: 'assets/Wall/marble_01_1k/marble_01_ao_1k.jpg'
         }
         const floorText = {
             map: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
-            dispmap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Height.jpg',
             roughmap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
             aomap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
         }
         const world = new World(this.loadingManager, this.physics);
 
         Promise.all([world.skybox(),
-            world.floor(floorW, floorL, 0.6, floorText.map, floorText.dispmap, floorText.roughmap, floorText.aomap),
-            world.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
-            world.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
-            world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
-            world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao, wallText.disp),
-            world.gltfModel('assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .15, .15, .15, 0, wallHeight, 0, -Math.PI / 2, false),
+            world.floor(floorW, floorL, 0.6, floorText.map, floorText.roughmap, floorText.aomap),
+            world.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao),
+            world.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao),
+            world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao),
+            world.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao),
+            world.gltfModel('assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, .16, .16, 0, wallHeight+.25, 0, -Math.PI / 2, false),
             world.gltfModel('assets/Statues/Pieta.gltf', 1, 1, 1, -3, 2, -3, -Math.PI, true), // pieta
             world.gltfModel('assets/Statues/Madonna.gltf', 1, 1, 1, 5, 2, 5, -Math.PI, true), // madonna
             world.gltfModel('assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3, -Math.PI, true), // duke
@@ -168,27 +171,12 @@ class MainApp {
 
                 // floor
                 const floor = models[1];
-                //this.physics.add.existing(floor); 
-
+                
                 // walls
                 const wall1 = models[2]; 
-                wall1.translateZ(floorL / 2 - 0.5);
-                //this.physics.add.existing(wall1); 
-
                 const wall2 = models[3];
-                wall2.translateZ(-(floorL / 2 - 0.5));
-                //this.physics.add.existing(wall2); 
-
                 const wall3 = models[4];
-                wall3.translateX(floorW / 2 - 0.5);
-                wall3.rotateY(-Math.PI / 2);
-                //this.physics.add.existing(wall3); 
-
                 const wall4 = models[5];
-                wall4.translateX(-(floorW / 2 - 0.5));
-                wall4.rotateY(-Math.PI / 2);
-                //this.physics.add.existing(wall4); 
-
 
                 //ceiling
                 const skylight = models[6];
@@ -204,12 +192,33 @@ class MainApp {
                 // add to scene
                 this.scene.background = sky;
 
-                //this.scene.add(floor);
-                this.physics.add.ground({ width: 20, height: 20 })
+                this.scene.add(floor);
+                this.physics.add.existing(floor);
+                floor.body.setCollisionFlags(2)
+
+                wall1.translateZ(floorL / 2 - 0.5);
                 this.scene.add(wall1);
+                this.physics.add.existing(wall1); 
+                wall1.body.setCollisionFlags(2)
+                
+                wall2.translateZ(-(floorL / 2 - 0.5));
                 this.scene.add(wall2);
+                this.physics.add.existing(wall2); 
+                wall2.body.setCollisionFlags(2);
+                
+                wall3.translateX(floorW / 2 - 0.5);
+                wall3.rotateY(-Math.PI / 2);
                 this.scene.add(wall3);
+                this.physics.add.existing(wall3); 
+                wall3.body.setCollisionFlags(2);
+               
+                wall4.translateX(-(floorW / 2 - 0.5));
+                wall4.rotateY(-Math.PI / 2);
                 this.scene.add(wall4);
+                this.physics.add.existing(wall4); 
+                wall4.body.setCollisionFlags(2);
+                
+
                 this.scene.add(skylight);
 
                 this.scene.add(pieta);
@@ -218,15 +227,17 @@ class MainApp {
                 this.scene.add(david);
                 this.scene.add(angel);
                 this.scene.add(crouchingBoy);
+                
 
                 //testing
                 const geometry = new BoxGeometry(1,1,1)
-                const material = new MeshLambertMaterial({ color: 0x00ff00 })
+                const material = new MeshLambertMaterial({map: new TextureLoader(this.loadingManager).load('assets/Wall/marble_01_1k/marble_01_diff_1k.jpg') })
                 this.cube = new Mesh(geometry, material)
                 this.cube.position.set(0, 5, 0)
                 this.scene.add(this.cube)
                 this.physics.add.existing(this.cube)
                 this.cube.body.setCollisionFlags(0) // make it dynamic
+                
 
                 
                 
@@ -295,8 +306,8 @@ class MainApp {
                 }
                 if (this.immobile === false) { //only allow controls if pointer is locked in browser
                     this.wasd.con(this.camera, 0.05);
-                    this.cube.body.needUpdate = true
-                    this.physics.update(delta) // * 1000
+                    this.cube.body.needUpdate = true;
+                    this.physics.update(delta);
                     this.physics.updateDebugger()
                 }
                 this.timeDelta(delta - this.prevRender);
@@ -340,37 +351,33 @@ class World{
         return texture;
     }
 
-    floor(w, l, roughnum, map, dispmap, roughmap, aomap){
+    floor(w, l, roughnum, map, roughmap, aomap){
         return new Promise(resolve =>{
             const textures = [
                 this.textureLoader.loadAsync(map),
-                this.textureLoader.loadAsync(dispmap),
                 this.textureLoader.loadAsync(roughmap),
                 this.textureLoader.loadAsync(aomap)
             ];
             Promise.all(textures).then(texts=>{
                 this.textureWrap(texts, w, l);
-                const floor = new Mesh(new PlaneGeometry(w, l), new MeshStandardMaterial(
+                const floor = new Mesh(new BoxGeometry(w, 1, l), new MeshStandardMaterial(
                     {
                         map: texts[0],
-                        displacementMap: texts[1],
-                        roughnessMap: texts[2],
+                        roughnessMap: texts[1],
                         roughness: roughnum,
-                        aoMap: texts[3],
+                        aoMap: texts[2],
                     }
                 ));
-                floor.rotation.x = -Math.PI / 2;
                 floor.castShadow = false;
                 floor.receiveShadow = true;
                 resolve(floor)
             })
         })
     }
-    wall(w, h, d, roughnum, shadowCast, shadowRec,  map, roughmap, aomap, dispmap){
+    wall(w, h, d, roughnum, shadowCast, shadowRec,  map, roughmap, aomap){
         return new Promise(resolve =>{
             const textures = [
                 this.textureLoader.loadAsync(map),
-                this.textureLoader.loadAsync(dispmap),
                 this.textureLoader.loadAsync(roughmap),
                 this.textureLoader.loadAsync(aomap)
             ];
@@ -381,10 +388,9 @@ class World{
                     new MeshStandardMaterial(
                         {
                             map: texts[0],
-                            displacementMap: texts[1],
-                            roughnessMap: texts[2],
+                            roughnessMap: texts[1],
                             roughness: roughnum,
-                            aoMap: texts[3],
+                            aoMap: texts[2],
                         }
                 ));
                 wall.castShadow = shadowCast;
