@@ -16,11 +16,15 @@ import {LoadingManager,
     CubeTextureLoader,
     BoxGeometry,
     CircleGeometry,
-    MeshBasicMaterial
+    MeshBasicMaterial,
+    Clock,
+    MeshLambertMaterial,
+    SphereGeometry 
 } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { ControllerScript } from './ControllerScript.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { AmmoPhysics, ExtendedMesh, PhysicsLoader } from '@enable3d/ammo-physics'
 
 
 class MainApp {
@@ -34,8 +38,6 @@ class MainApp {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = PCFSoftShadowMap;
         this.renderer.outputEncoding = sRGBEncoding;
-        this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2.2;
         
         // camera
         const fov = 65;
@@ -92,8 +94,12 @@ class MainApp {
         this.controls.addEventListener('unlock', this.addControlBlock.bind(this));
         this.scene.add(this.controls.getObject());
 
-        //this.physics = new ENABLE3D.AmmoPhysics(this.scene);
-        //this.physics.debug.enable(true)
+        // physics
+        this.clock = new Clock()
+        this.delta = 0;
+        this.fps = 1/30;
+        this.physics = new AmmoPhysics(this.scene);
+        this.physics.debug.enable(true);
     }
 
     lockControls(){
@@ -141,7 +147,7 @@ class MainApp {
             roughmap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
             aomap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
         }
-        const world = new World(this.loadingManager);
+        const world = new World(this.loadingManager, this.physics);
 
         Promise.all([world.skybox(),
             world.floor(floorW, floorL, 0.6, floorText.map, floorText.dispmap, floorText.roughmap, floorText.aomap),
@@ -161,22 +167,27 @@ class MainApp {
                 const sky = models[0]; 
 
                 // floor
-                const floor = models[1]; 
+                const floor = models[1];
+                //this.physics.add.existing(floor); 
 
                 // walls
                 const wall1 = models[2]; 
                 wall1.translateZ(floorL / 2 - 0.5);
+                //this.physics.add.existing(wall1); 
 
                 const wall2 = models[3];
                 wall2.translateZ(-(floorL / 2 - 0.5));
+                //this.physics.add.existing(wall2); 
 
                 const wall3 = models[4];
                 wall3.translateX(floorW / 2 - 0.5);
                 wall3.rotateY(-Math.PI / 2);
+                //this.physics.add.existing(wall3); 
 
                 const wall4 = models[5];
                 wall4.translateX(-(floorW / 2 - 0.5));
                 wall4.rotateY(-Math.PI / 2);
+                //this.physics.add.existing(wall4); 
 
 
                 //ceiling
@@ -193,7 +204,8 @@ class MainApp {
                 // add to scene
                 this.scene.background = sky;
 
-                this.scene.add(floor);
+                //this.scene.add(floor);
+                this.physics.add.ground({ width: 20, height: 20 })
                 this.scene.add(wall1);
                 this.scene.add(wall2);
                 this.scene.add(wall3);
@@ -206,6 +218,15 @@ class MainApp {
                 this.scene.add(david);
                 this.scene.add(angel);
                 this.scene.add(crouchingBoy);
+
+                //testing
+                const geometry = new BoxGeometry(1,1,1)
+                const material = new MeshLambertMaterial({ color: 0x00ff00 })
+                this.cube = new Mesh(geometry, material)
+                this.cube.position.set(0, 5, 0)
+                this.scene.add(this.cube)
+                this.physics.add.existing(this.cube)
+                this.cube.body.setCollisionFlags(0) // make it dynamic
 
                 
                 
@@ -274,6 +295,9 @@ class MainApp {
                 }
                 if (this.immobile === false) { //only allow controls if pointer is locked in browser
                     this.wasd.con(this.camera, 0.05);
+                    this.cube.body.needUpdate = true
+                    this.physics.update(delta) // * 1000
+                    this.physics.updateDebugger()
                 }
                 this.timeDelta(delta - this.prevRender);
                 this.renderer.render(this.scene, this.camera);
@@ -288,7 +312,7 @@ class MainApp {
 }
 
 class World{
-    constructor(loadMan){
+    constructor(loadMan, physics){
         this.cubeLoad = new CubeTextureLoader(loadMan);
         this.textureLoader = new TextureLoader(loadMan);
         this.GLTFLoader = new GLTFLoader(loadMan);
@@ -392,13 +416,13 @@ class World{
     }
 }
 
-
-
-
 // call app
 let APP_ = null;
 window.addEventListener('DOMContentLoaded', async () => {
-      APP_ = new MainApp();
-      APP_.init();
+    function appInitialize(){
+        APP_ = new MainApp();
+        APP_.init()
+    }
+    PhysicsLoader('/dist/ammo', () => appInitialize());
   });
 
