@@ -17,16 +17,10 @@ import {LoadingManager,
     BoxGeometry,
     CircleGeometry,
     MeshBasicMaterial,
-    Clock,
-    MeshLambertMaterial,
-    SphereGeometry, 
-    CapsuleGeometry
 } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { ControllerScript } from './ControllerScript.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { AmmoPhysics, ExtendedMesh, PhysicsLoader } from '@enable3d/ammo-physics'
-
 
 class MainApp {
     constructor() {
@@ -98,13 +92,6 @@ class MainApp {
         this.controls.addEventListener('lock', this.removeControlBlock.bind(this));
         this.controls.addEventListener('unlock', this.addControlBlock.bind(this));
         this.scene.add(this.controls.getObject());
-
-        // physics
-        this.clock = new Clock()
-        this.delta = 0;
-        this.fps = 1/30;
-        this.physics = new AmmoPhysics(this.scene);
-        this.physics.debug.enable(true);
     }
 
     lockControls(){
@@ -193,30 +180,25 @@ class MainApp {
                 this.scene.background = sky;
 
                 this.scene.add(floor);
-                this.physics.add.existing(floor);
-                floor.body.setCollisionFlags(2)
+
 
                 wall1.translateZ(floorL / 2 - 0.5);
                 this.scene.add(wall1);
-                this.physics.add.existing(wall1); 
-                wall1.body.setCollisionFlags(2)
+
                 
                 wall2.translateZ(-(floorL / 2 - 0.5));
                 this.scene.add(wall2);
-                this.physics.add.existing(wall2); 
-                wall2.body.setCollisionFlags(2);
+
                 
                 wall3.translateX(floorW / 2 - 0.5);
                 wall3.rotateY(-Math.PI / 2);
                 this.scene.add(wall3);
-                this.physics.add.existing(wall3); 
-                wall3.body.setCollisionFlags(2);
+
                
                 wall4.translateX(-(floorW / 2 - 0.5));
                 wall4.rotateY(-Math.PI / 2);
                 this.scene.add(wall4);
-                this.physics.add.existing(wall4); 
-                wall4.body.setCollisionFlags(2);
+
                 
 
                 this.scene.add(skylight);
@@ -229,14 +211,6 @@ class MainApp {
                 this.scene.add(crouchingBoy);
                 
 
-                //testing
-                const geometry = new BoxGeometry(1,1,1)
-                const material = new MeshLambertMaterial({map: new TextureLoader(this.loadingManager).load('assets/Wall/marble_01_1k/marble_01_diff_1k.jpg') })
-                this.cube = new Mesh(geometry, material)
-                this.cube.position.set(0, 5, 0)
-                this.scene.add(this.cube)
-                this.physics.add.existing(this.cube)
-                this.cube.body.setCollisionFlags(0) // make it dynamic
                 
 
                 
@@ -306,9 +280,6 @@ class MainApp {
                 }
                 if (this.immobile === false) { //only allow controls if pointer is locked in browser
                     this.wasd.con(this.camera, 0.05);
-                    this.cube.body.needUpdate = true;
-                    this.physics.update(delta);
-                    this.physics.updateDebugger()
                 }
                 this.timeDelta(delta - this.prevRender);
                 this.renderer.render(this.scene, this.camera);
@@ -429,6 +400,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         APP_ = new MainApp();
         APP_.init()
     }
-    PhysicsLoader('/dist/ammo', () => appInitialize());
+    appInitialize();
   });
 
