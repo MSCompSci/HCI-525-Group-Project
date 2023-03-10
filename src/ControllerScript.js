@@ -1,17 +1,17 @@
+import { Collider } from "@dimforge/rapier3d";
 import {
+    Vector2,
     Vector3,
 } from "three";
 
 class ControllerScript {
-    constructor(dom, camera) {
+    constructor(dom, physicsWorld) {
         this.prevKeyState = { // key states
             w: false,
             a: false,
             s: false,
             d: false
         };
-
-
         // wasd event listeners
         this.eventListeners = this.addListeners(this.prevKeyState, dom);
         this.translation = new Vector3();
@@ -50,43 +50,39 @@ class ControllerScript {
             }
         })
     }
-    con(camera, speed) { // wasd control function
+    con(camera, speed, cameraBody, characterController) { // wasd control function
 
         // get direction camera is facing in world coords
 
 
-        camera.getWorldDirection(this.camDirV);
-        this.theta = Math.atan2(this.camDirV.x, this.camDirV.z);
-
-
-        // account for x and y getting super small when looking directly up or down
-        /*if ((camDirRaw.x < .0001)&&(camDirV.x > -.0001)){
-            camDirRaw.x = .0002;
-
-        }
-        if ((camDirRaw.z < .0001)&&(camDirV.z > -.0001)){
-            camDirRaw.z = .0002;
-
-        }*/
+        camera.getWorldDirection(this.camDirV); // this.camDirV vector is always magnitude of 1
+        this.theta = Math.atan2(this.camDirV.x, this.camDirV.z); // angle between camera direction and +x axis
 
         // set camera direction vector with constant height
-        let camDir = new Vector3(this.camDirV.x, -0, this.camDirV.z);
+        let camDir = new Vector3(this.camDirV.x, 0, this.camDirV.z).normalize(); // camera direction on x z plane
+        
+        
+        let desiredMovement = new Vector3(0,0,0);
+
+        
 
 
         // move camera in correct direction
         if (this.prevKeyState.w === true) {
-            camera.position.addScaledVector(camDir, speed);
+            desiredMovement.addScaledVector(camDir, speed);
         }
         if (this.prevKeyState.s === true) {
-            camera.position.addScaledVector(camDir.negate(), speed);
+            desiredMovement.addScaledVector(new Vector3(-camDir.x, 0, -camDir.z), speed);
 
         }
         if (this.prevKeyState.a === true) {
-            camera.translateX(-(speed));
+            //desiredMovement.translateX(-(speed));
         }
         if (this.prevKeyState.d === true) {
-            camera.translateX(speed);
+            //desiredMovement.translateX(speed);
         }
+        return desiredMovement
+        
 
     }
 
