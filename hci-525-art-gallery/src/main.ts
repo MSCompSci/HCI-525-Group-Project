@@ -198,17 +198,17 @@ class MainApp {
     const floorW = 50;
     const floorL = 89;
     const floorText = {
-      map: '/assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
-      roughmap: '/assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
-      aomap: '/assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
+      map: '../assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
+      roughmap: '../assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
+      aomap: '../assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
     }
 
     // walls
     const wallHeight = 25;
     const wallText = {
-      base: '/assets/Wall/marble_01_1k/marble_01_diff_1k.jpg',
-      rough: '/assets/Wall/marble_01_1k/marble_01_rough_1k.jpg',
-      ao: '/assets/Wall/marble_01_1k/marble_01_ao_1k.jpg'
+      base: '../assets/Wall/marble_01_1k/marble_01_diff_1k.jpg',
+      rough: '../assets/Wall/marble_01_1k/marble_01_rough_1k.jpg',
+      ao: '../assets/Wall/marble_01_1k/marble_01_ao_1k.jpg'
     }
 
     Promise.all([world3D.skybox(), // check if all assets are loaded
@@ -217,10 +217,10 @@ class MainApp {
     world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallN
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallW
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallE
-    world3D.gltfModel('/assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
-    world3D.gltfModel('/assets/Statues/Pieta.gltf', 1, -3, 2, -3, -Math.PI, true), // pieta
-    world3D.gltfModel('/assets/Statues/Madonna.gltf', 1, 5, 2, 5, -Math.PI, true), // madonna
-    world3D.gltfModel('/assets/Statues/David.gltf', 1, 2, 2, 2, -Math.PI, true), // david
+    world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
+    world3D.gltfModel('../assets/Statues/Pieta.gltf', 1, -3, 2, -3, -Math.PI, true), // pieta
+    world3D.gltfModel('../assets/Statues/Madonna.gltf', 1, 5, 2, 5, -Math.PI, true), // madonna
+    world3D.gltfModel('../assets/Statues/David.gltf', 1, 2, 2, 2, -Math.PI, true), // david
     ]).then(models => { // then create items in scene
       
 

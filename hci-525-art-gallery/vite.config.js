@@ -6,11 +6,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        gallery: resolve(__dirname, 'Gallery/index.html'),
-        credits: resolve(__dirname, 'Credits/index.html'),
+        main: resolve(__dirname, './index.html'),
+        gallery: resolve(__dirname, './Gallery/index.html'),
+        credits: resolve(__dirname, './Credits/index.html'),
       },
     },
-    outDir: '../docs',
+    outDir: '../docs/',
   },
 })

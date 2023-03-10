@@ -24,12 +24,12 @@ class World{
 
     skybox(){
         const texture = this.cubeLoad.loadAsync([
-            '/assets/Skybox/px.png',
-            '/assets/Skybox/nx.png',
-            '/assets/Skybox/py.png',
-            '/assets/Skybox/ny.png',
-            '/assets/Skybox/pz.png',
-            '/assets/Skybox/nz.png',
+            '../assets/Skybox/px.png',
+            '../assets/Skybox/nx.png',
+            '../assets/Skybox/py.png',
+            '../assets/Skybox/ny.png',
+            '../assets/Skybox/pz.png',
+            '../assets/Skybox/nz.png',
         ]);
         return texture;
     }
