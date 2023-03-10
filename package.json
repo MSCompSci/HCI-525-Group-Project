@@ -1,0 +1,20 @@
+{
+  "name": "hci-525-group-project-v2",
+  "version": "1.0.0",
+  "description": "Group art gallery project",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "@enable3d/ammo-physics": "^0.25.3",
+    "three": "^0.144.0"
+  }
+}
