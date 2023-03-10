@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Art Gallery</title>
+  <link href="/src/style.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+
+
+  </style>
+</head>
+
+<body>
+<div id="load-screen">
+    <div id="loading-prog">
+      <p id="loading-text">Loading...</p>
+      <div id="prog-bar">
+        <div id="bar-fill"></div>
+      </div>
+      <p id="resource-load">Loading ?/? items</p>
+    </div>
+  </div>
+
+  <div id="blocker">
+    <div id="instructions">
+      <div id="instructionsBlock">
+        <p style="font-size: 1.8em;">
+          Click to play
+        </p>
+        <p>
+          Move Using W, A, S, D<br />
+          Look around using your mouse
+        </p>
+        <nav>
+          <a class="nav-link" href="./traditional-website/index.html">Traditional Website Version</a>
+          <a class="nav-link" href="./credits/index.html">Asset Credits</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div id="item-blocker">
+    <div id="item-info">
+      <div id="item-popup">
+        <h1 id="item-title">Item Title</h1>
+        <p id="item-desc"></p>
+        <p>Click to close</p>
+      </div>
+    </div>
+  </div>
+  <canvas id="c"></canvas>
+  <script type="module" src="../src/main.ts"></script>
+  
+</body>
+
+</html>
