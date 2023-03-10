@@ -17,20 +17,18 @@ import {LoadingManager,
     BoxGeometry,
     CircleGeometry,
     MeshBasicMaterial,
-    Clock,
-    MeshLambertMaterial,
-    SphereGeometry, 
-    CapsuleGeometry
+    Quaternion,
 } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { ControllerScript } from './ControllerScript.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { AmmoPhysics, ExtendedMesh, PhysicsLoader } from '@enable3d/ammo-physics'
-
+import { RigidBody } from '@dimforge/rapier3d';
 
 class MainApp {
-    constructor() {
-
+    constructor(RAPIER) {
+        const gravity = { x: 0.0, y: -9.81, z: 0.0 };
+        this.physicsWorld = new RAPIER.World(gravity);
+        
         // *****HTML References*****
         const canvas = document.querySelector('#c');
 
@@ -47,11 +45,11 @@ class MainApp {
         const far = 150;
         this.camera = new PerspectiveCamera(fov, aspect, near, far);
         this.camera.position.set(0,5,0);
+        let camRBDesc = RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(this.camera.position.x, this.camera.position.y, this.camera.position.z);
+        let camRigidBody = this.physicsWorld.createRigidBody(camRBDesc);
+        const cameraColliderDesc = RAPIER.ColliderDesc.capsule(0.5, 0.2).setTranslation(this.camera.position.x, this.camera.position.y, this.camera.position.z);
+        this.cameraBody = this.physicsWorld.createCollider(cameraColliderDesc, camRigidBody)
         
-
-        
-        
-
         // camera crossHairs
         const crossHairsGeo = new CircleGeometry(.0035, 16);
         const crossHairsMat = new MeshBasicMaterial({ color: 0xe6e6e6 });
@@ -90,7 +88,9 @@ class MainApp {
 
         // ***CONTROLS***
         this.controls = new PointerLockControls(this.camera, document.body); // new pointer controls for camera
-        this.wasd = new ControllerScript(document); // new wasd controls for movement
+        this.wasd = new ControllerScript(document, this.physicsWorld); // new wasd controls for movement
+        const offset = 0.01;
+        this.characterController = this.physicsWorld.createCharacterController(offset);
         
         // immobilize controls on startup
         this.immobile = true;
@@ -99,12 +99,7 @@ class MainApp {
         this.controls.addEventListener('unlock', this.addControlBlock.bind(this));
         this.scene.add(this.controls.getObject());
 
-        // physics
-        this.clock = new Clock()
-        this.delta = 0;
-        this.fps = 1/30;
-        this.physics = new AmmoPhysics(this.scene);
-        this.physics.debug.enable(true);
+        this.init(RAPIER);
     }
 
     lockControls(){
@@ -123,7 +118,7 @@ class MainApp {
         this.immobile = true;
     }
 
-    init() {
+    init(RAPIER) {
         const blocker = document.getElementById('blocker');
         const instructions = document.getElementById('instructions');
         const loadScreen = document.getElementById('load-screen');
@@ -150,7 +145,8 @@ class MainApp {
             roughmap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
             aomap: 'assets/Floor/Stone_Floor_004_SD/Substance_Graph_AmbientOcclusion.jpg'
         }
-        const world = new World(this.loadingManager, this.physics);
+        const world = new World(this.loadingManager);
+        
 
         Promise.all([world.skybox(),
             world.floor(floorW, floorL, 0.6, floorText.map, floorText.roughmap, floorText.aomap),
@@ -161,10 +157,10 @@ class MainApp {
             world.gltfModel('assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, .16, .16, 0, wallHeight+.25, 0, -Math.PI / 2, false),
             world.gltfModel('assets/Statues/Pieta.gltf', 1, 1, 1, -3, 2, -3, -Math.PI, true), // pieta
             world.gltfModel('assets/Statues/Madonna.gltf', 1, 1, 1, 5, 2, 5, -Math.PI, true), // madonna
-            world.gltfModel('assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3, -Math.PI, true), // duke
+            //world.gltfModel('assets/Statues/Duke.gltf', 1, 1, 1, 3, 2, 3, -Math.PI, true), // duke
             world.gltfModel('assets/Statues/David.gltf', 1, 1, 1, 2, 2, 2, -Math.PI, true), // david
-            world.gltfModel('assets/Statues/Angel.gltf', 1, 1, 1, 0, 2, 0, -Math.PI, true), //angel
-            world.gltfModel('assets/Statues/Crouch.gltf', 1, 1, 1, -.5, 2.5, -.5, -Math.PI, true) //crouching boy
+            //world.gltfModel('assets/Statues/Angel.gltf', 1, 1, 1, 0, 2, 0, -Math.PI, true), //angel
+            //world.gltfModel('assets/Statues/Crouch.gltf', 1, 1, 1, -.5, 2.5, -.5, -Math.PI, true) //crouching boy
             ]).then(models => {
                 // skybox
                 const sky = models[0]; 
@@ -184,59 +180,66 @@ class MainApp {
                 //statues
                 const pieta = models[7];
                 const madonna = models[8];
-                const duke = models[9];
+                //const duke = models[9];
                 const david = models[10];
-                const angel = models[11];
-                const crouchingBoy = models[12];
+                //const angel = models[11];
+                //const crouchingBoy = models[12];
 
                 // add to scene
                 this.scene.background = sky;
 
                 this.scene.add(floor);
-                this.physics.add.existing(floor);
-                floor.body.setCollisionFlags(2)
+                //const floorRB = this.physicsWorld.createRigidBody(RAPIER.RigidBodyDesc.fixed());
+                //this.physicsWorld.createCollider(RAPIER.ColliderDesc.cuboid(floorW/2, 0.5, floorL/2), floorRB.handle);
+
+                const threeMesh = new Mesh(new BoxGeometry(2,2,2), new MeshBasicMaterial({color: 'red'}))
+                threeMesh.position.set(3,3,3);
+                this.scene.add(threeMesh);
+
+                const bodyType = RAPIER.RigidBodyDesc.dynamic().setTranslation(3,3,3);
+                const rigidBody = this.physicsWorld.createRigidBody(bodyType);
+                const colliderType = RAPIER.ColliderDesc.cuboid(1,1,1).setTranslation(3,3,3);
+                this.physicsWorld.createCollider(colliderType, rigidBody.handle)
+                this.bodys = [];
+                this.bodys.push({rigid: rigidBody, mesh: threeMesh})
+
+                
+
+
 
                 wall1.translateZ(floorL / 2 - 0.5);
                 this.scene.add(wall1);
-                this.physics.add.existing(wall1); 
-                wall1.body.setCollisionFlags(2)
+                const W1RBD = RAPIER.RigidBodyDesc.fixed().setTranslation(wall1.position.x, wall1.position.y, wall1.position.z)
+                const W1RB = this.physicsWorld.createRigidBody(W1RBD);
+                const W1CD = RAPIER.ColliderDesc.cuboid(floorW, 1, wallHeight)
+                this.physicsWorld.createCollider(W1CD, W1RB.handle);
+
                 
                 wall2.translateZ(-(floorL / 2 - 0.5));
-                this.scene.add(wall2);
-                this.physics.add.existing(wall2); 
-                wall2.body.setCollisionFlags(2);
+                //this.scene.add(wall2);
+
                 
                 wall3.translateX(floorW / 2 - 0.5);
                 wall3.rotateY(-Math.PI / 2);
-                this.scene.add(wall3);
-                this.physics.add.existing(wall3); 
-                wall3.body.setCollisionFlags(2);
+                //this.scene.add(wall3);
+
                
                 wall4.translateX(-(floorW / 2 - 0.5));
                 wall4.rotateY(-Math.PI / 2);
-                this.scene.add(wall4);
-                this.physics.add.existing(wall4); 
-                wall4.body.setCollisionFlags(2);
+                //this.scene.add(wall4);
+
                 
 
-                this.scene.add(skylight);
+                //this.scene.add(skylight);
 
-                this.scene.add(pieta);
-                this.scene.add(madonna);
-                this.scene.add(duke);
-                this.scene.add(david);
-                this.scene.add(angel);
-                this.scene.add(crouchingBoy);
+                //this.scene.add(pieta);
+                //this.scene.add(madonna);
+                //this.scene.add(duke);
+                //this.scene.add(david);
+                //this.scene.add(angel);
+                //this.scene.add(crouchingBoy);
                 
 
-                //testing
-                const geometry = new BoxGeometry(1,1,1)
-                const material = new MeshLambertMaterial({map: new TextureLoader(this.loadingManager).load('assets/Wall/marble_01_1k/marble_01_diff_1k.jpg') })
-                this.cube = new Mesh(geometry, material)
-                this.cube.position.set(0, 5, 0)
-                this.scene.add(this.cube)
-                this.physics.add.existing(this.cube)
-                this.cube.body.setCollisionFlags(0) // make it dynamic
                 
 
                 
@@ -305,15 +308,35 @@ class MainApp {
                     this.prevRender = delta;
                 }
                 if (this.immobile === false) { //only allow controls if pointer is locked in browser
-                    this.wasd.con(this.camera, 0.05);
-                    this.cube.body.needUpdate = true;
-                    this.physics.update(delta);
-                    this.physics.updateDebugger()
+                    this.physicsWorld.step();
+                    let desiredMovement = this.wasd.con(this.camera, 0.10, this.cameraBody, this.characterController);
+                    
+                    this.characterController.computeColliderMovement(this.cameraBody, desiredMovement)
+                    let correctedMovement = this.characterController.computedMovement();
+                    this.bodys.forEach(body =>{
+                        let position = body.rigid.translation();
+                        let rotation = body.rigid.rotation();
+
+                        body.mesh.position.x = position.x;
+                        body.mesh.position.y = position.y;
+                        body.mesh.position.z = position.z;
+
+                        body.mesh.setRotationFromQuaternion(
+                            new Quaternion(rotation.x,
+                                rotation.y, rotation.z, rotation.w));
+                        
+                    });
+                    //console.log(desiredMovement)
+                    //console.log(correctedMovement)
+                    
+                    this.cameraBody._parent.setNextKinematicTranslation({x: correctedMovement.x, y: 0, z: correctedMovement.z});
+                    this.camera.position.set(this.camera.position.x+correctedMovement.x, 5, this.camera.position.z+correctedMovement.z)
                 }
                 this.timeDelta(delta - this.prevRender);
                 this.renderer.render(this.scene, this.camera);
                 this.render();
                 this.prevRender = delta;
+                
             });
         }
 
@@ -423,12 +446,13 @@ class World{
 }
 
 // call app
+
 let APP_ = null;
 window.addEventListener('DOMContentLoaded', async () => {
-    function appInitialize(){
-        APP_ = new MainApp();
-        APP_.init()
-    }
-    PhysicsLoader('/dist/ammo', () => appInitialize());
-  });
+    import('@dimforge/rapier3d').then(RAPIER => {
+        APP_ = new MainApp(RAPIER);
+    });
+});
+
+
 
