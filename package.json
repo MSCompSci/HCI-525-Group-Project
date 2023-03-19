@@ -2,6 +2,7 @@
   "name": "hci-525-group-project-v2",
   "version": "1.0.0",
   "description": "Group art gallery project",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,11 +11,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack-cli": "^5.0.1"
-  },
-  "dependencies": {
-    "@dimforge/rapier3d": "^0.11.2",
-    "three": "^0.144.0",
-    "webpack": "^5.75.0"
+    "vite": "^4.1.4"
   }
 }
