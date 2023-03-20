@@ -13,6 +13,8 @@ import {
   Vector3,
   Camera,
   BoxGeometry,
+  //SpotLightHelper,
+  SpotLight,
   //LineBasicMaterial, //For rapier3d debug
   //BufferGeometry,
   //LineSegments,
@@ -123,8 +125,30 @@ class MainApp {
     lightD.shadow.camera.top = 100;
     lightD.shadow.camera.bottom = -100;
     this.scene.add(lightD);
-    const lightA = new AmbientLight(0x404040, 1); // ambient light
+    const lightA = new AmbientLight(0x404040, .8); // ambient light
     this.scene.add(lightA);
+
+    const spotLightDavid = new SpotLight(color, .6)
+    spotLightDavid.position.set(5,27,-20)
+    spotLightDavid.target.position.set(2,19,-24)
+    spotLightDavid.penumbra = 1;
+    spotLightDavid.angle = Math.PI/16;
+    spotLightDavid.castShadow = true;
+    this.scene.add(spotLightDavid)
+    this.scene.add(spotLightDavid.target)
+    //const helperDavid = new SpotLightHelper(spotLightDavid);
+    //this.scene.add(helperDavid);
+
+    const spotLightPieta = new SpotLight(color, .4)
+    spotLightPieta.position.set(5,27,20)
+    spotLightPieta.target.position.set(-15,6,-12)
+    spotLightPieta.penumbra = 1;
+    spotLightPieta.angle = Math.PI/16;
+    spotLightPieta.castShadow = true;
+    this.scene.add(spotLightPieta)
+    this.scene.add(spotLightPieta.target)
+    //const helper = new SpotLightHelper(spotLightPieta);
+    //this.scene.add(helper);
 
     // loading manager
     this.loadingManager = new LoadingManager();
@@ -218,9 +242,11 @@ class MainApp {
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallW
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallE
     world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
-    world3D.gltfModel('../assets/Statues/Pieta.gltf', 1, -3, 2, -3, -Math.PI, true), // pieta
-    world3D.gltfModel('../assets/Statues/Madonna.gltf', 1, 5, 2, 5, -Math.PI, true), // madonna
-    world3D.gltfModel('../assets/Statues/David.gltf', 1, 2, 2, 2, -Math.PI, true), // david
+    world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -10, Math.PI/2, true), // pieta
+    world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -14.5, -Math.PI/2, true), // madonna
+    world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -25, 2*Math.PI, true), // david
+    world3D.wall(4,1.7,6,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
+    world3D.wall(4,1.7,6,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
     ]).then(models => { // then create items in scene
       
 
@@ -280,6 +306,20 @@ class MainApp {
       david.children[0].name = 'david'
       this.interactiveItems.push(david.children[0].name)
       this.scene.add(david);
+
+      const pietaStand: any = models[10];
+      pietaStand.translateX(-17)
+      pietaStand.translateZ(-13)
+      this.scene.add(pietaStand)
+      const pietaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(-17, 2.2, -13).setFriction(.01);
+      this.world.createCollider(pietaStandColliderDesc);
+
+      const madonnaStand: any = models[11];
+      madonnaStand.translateX(17)
+      madonnaStand.translateZ(-13)
+      this.scene.add(madonnaStand)
+      const madonnaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(17, 2.2, -13).setFriction(.01);
+      this.world.createCollider(madonnaStandColliderDesc);
 
       // doorway
       const geometry = new BoxGeometry( 5, 10, 1 );
