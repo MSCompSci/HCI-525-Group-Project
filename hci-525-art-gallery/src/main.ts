@@ -124,6 +124,7 @@ class MainApp {
     lightD.shadow.camera.right = -100;
     lightD.shadow.camera.top = 100;
     lightD.shadow.camera.bottom = -100;
+    lightD.shadow.bias = -0.001;
     this.scene.add(lightD);
     const lightA = new AmbientLight(0x404040, .8); // ambient light
     this.scene.add(lightA);
@@ -234,6 +235,11 @@ class MainApp {
       rough: '../assets/Wall/marble_01_1k/marble_01_rough_1k.jpg',
       ao: '../assets/Wall/marble_01_1k/marble_01_ao_1k.jpg'
     }
+    const standText = {
+      base: '../assets/Stands/brushed_concrete_1k/brushed_concrete_diff_1k.jpg',
+      rough: '../assets/Stands/brushed_concrete_1k/brushed_concrete_rough_1k.jpg',
+      ao: '../assets/Stands/brushed_concrete_1k/brushed_concrete_ao_1k.jpg'
+    }
 
     Promise.all([world3D.skybox(), // check if all assets are loaded
     world3D.floor(floorW, floorL, 0.6, floorText.map, floorText.roughmap, floorText.aomap), // floor
@@ -245,8 +251,8 @@ class MainApp {
     world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -10, Math.PI/2, true), // pieta
     world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -14.5, -Math.PI/2, true), // madonna
     world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -25, 2*Math.PI, true), // david
-    world3D.wall(4,1.7,6,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
-    world3D.wall(4,1.7,6,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
+    world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
+    world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
     ]).then(models => { // then create items in scene
       
 
