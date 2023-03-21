@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   height: 100%;
 }
@@ -26,7 +26,7 @@ header{
     align-items: center;
     height: 100%;
     transform-style: preserve-3d;
-    z-index: -1;
+    /*z-index: -1;*/ /*Removed due to conflicting z-index values*/
 
 }
 
@@ -41,6 +41,7 @@ nav{
     padding: 30px 5px;
     justify-content: space-between; 
     align-items: center;
+    min-height: 20px;
 }
 
 nav ul{
@@ -84,7 +85,7 @@ nav ul li a:hover{
     color: #fff;
     padding-top: 500px;
     letter-spacing: 1px;
-
+    text-align: center;
 }
 
 /*About section*/
@@ -208,6 +209,43 @@ canvas {
   background-color: white;
   padding: 30px;
   border-radius: 30px;
+}
+
+/*Credits*/
+.parallax-img{
+  width: 100%;
+  background-image: url('/img/Dries-a-david.jpg');
+  min-height: 600px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sources-table{
+  width: 80%;
+  margin: 50px auto;
+  border: solid 1px lightgrey;
+  padding: 20px;
+  text-align: center;
+  border-collapse: collapse;
+}
+.sources-table a{
+  color: black;
+}
+.sources-table th, td {
+  padding: 10px;
+}
+.sources-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.sources-table tr:not(:first-child):hover{
+  background-color: lightblue;
+}
+.sources-table th{
+  font-size: 1.5em;
+  border-bottom: 1px lightgrey solid;
+  width: 16%;
 }
 
 
