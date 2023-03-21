@@ -9,6 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, './index.html'),
         gallery: resolve(__dirname, './Gallery/index.html'),
         credits: resolve(__dirname, './Credits/index.html'),
+        timeline: resolve(__dirname, './Timeline/index.html'),
       },
     },
     outDir: '../docs/',
