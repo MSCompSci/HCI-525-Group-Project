@@ -6,7 +6,6 @@
 
 body {
   margin: 0;
-  overflow-x: hidden;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   height: 100%;
 }
@@ -26,19 +25,20 @@ header{
     align-items: center;
     height: 100%;
     transform-style: preserve-3d;
-    /*z-index: -1;*/ /*Removed due to conflicting z-index values*/
+    z-index: -1;
 
 }
+
 
 /*top navigation menu*/
 nav{
     position: absolute;
     top: 0;
-	right: 0;
-	left:0;
-	width: 100%;
+	  right: 0;
+	  left:0;
+	  width: 100%;
     display: flex; 
-    padding: 30px 5px;
+    padding: 30px 0;
     justify-content: space-between; 
     align-items: center;
     min-height: 20px;
