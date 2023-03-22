@@ -1,4 +1,4 @@
-import { CubeTextureLoader, LoadingManager, TextureLoader,  RepeatWrapping, Mesh, BoxGeometry, MeshStandardMaterial, PlaneGeometry, MeshBasicMaterial, MeshPhongMaterial } from "three";
+import { CubeTextureLoader, LoadingManager, TextureLoader,  RepeatWrapping, Mesh, BoxGeometry, MeshStandardMaterial } from "three";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 class World{

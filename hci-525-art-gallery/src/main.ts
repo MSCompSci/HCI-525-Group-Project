@@ -130,8 +130,8 @@ class MainApp {
     this.scene.add(lightA);
 
     const spotLightDavid = new SpotLight(color, .6)
-    spotLightDavid.position.set(5,27,-20)
-    spotLightDavid.target.position.set(2,19,-24)
+    spotLightDavid.position.set(5,47,-28)
+    spotLightDavid.target.position.set(2,19,-38)
     spotLightDavid.penumbra = 1;
     spotLightDavid.angle = Math.PI/16;
     spotLightDavid.castShadow = true;
@@ -140,15 +140,26 @@ class MainApp {
     //const helperDavid = new SpotLightHelper(spotLightDavid);
     //this.scene.add(helperDavid);
 
-    const spotLightPieta = new SpotLight(color, .4)
-    spotLightPieta.position.set(5,27,20)
-    spotLightPieta.target.position.set(-15,6,-12)
+    const spotLightPieta = new SpotLight(color, .6)
+    spotLightPieta.position.set(0,47,-28)
+    spotLightPieta.target.position.set(-15,7,-18)
     spotLightPieta.penumbra = 1;
     spotLightPieta.angle = Math.PI/16;
     spotLightPieta.castShadow = true;
     this.scene.add(spotLightPieta)
     this.scene.add(spotLightPieta.target)
     //const helper = new SpotLightHelper(spotLightPieta);
+    //this.scene.add(helper);
+
+    const spotLightMadonna = new SpotLight(color, .35)
+    spotLightMadonna.position.set(-5,47,-28)
+    spotLightMadonna.target.position.set(15,7,-25)
+    spotLightMadonna.penumbra = 1;
+    spotLightMadonna.angle = Math.PI/16;
+    spotLightMadonna.castShadow = true;
+    this.scene.add(spotLightMadonna)
+    this.scene.add(spotLightMadonna.target)
+    //const helper = new SpotLightHelper(spotLightMadonna);
     //this.scene.add(helper);
 
     // loading manager
@@ -248,9 +259,9 @@ class MainApp {
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallW
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallE
     world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .221, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
-    world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -10, Math.PI/2, true), // pieta
-    world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -14.5, -Math.PI/2, true), // madonna
-    world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -25, 2*Math.PI, true), // david
+    world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -15, Math.PI/2, true), // pieta
+    world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -24.5, -Math.PI/2, true), // madonna
+    world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -40, 2*Math.PI, true), // david
     world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
     world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
     world3D.painting('../assets/Paintings/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6)
@@ -313,17 +324,19 @@ class MainApp {
       david.children[0].name = 'david'
       this.interactiveItems.push(david.children[0].name)
       this.scene.add(david);
+      const davidColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,2).setTranslation(0, 2.2, -42).setFriction(.01);
+      this.world.createCollider(davidColliderDesc);
 
       const pietaStand: any = models[10];
       pietaStand.translateX(-17)
-      pietaStand.translateZ(-13)
+      pietaStand.translateZ(-18)
       this.scene.add(pietaStand)
       const pietaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(-17, 2.2, -13).setFriction(.01);
       this.world.createCollider(pietaStandColliderDesc);
 
       const madonnaStand: any = models[11];
       madonnaStand.translateX(17)
-      madonnaStand.translateZ(-13)
+      madonnaStand.translateZ(-23)
       this.scene.add(madonnaStand)
       const madonnaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(17, 2.2, -13).setFriction(.01);
       this.world.createCollider(madonnaStandColliderDesc);
