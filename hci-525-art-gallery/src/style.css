@@ -23,7 +23,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
     transform-style: preserve-3d;
     z-index: -1;
 
@@ -32,7 +32,7 @@ header{
 
 /*top navigation menu*/
 nav{
-    position: absolute;
+    position: fixed;
     top: 0;
 	  right: 0;
 	  left:0;
@@ -42,6 +42,7 @@ nav{
     justify-content: space-between; 
     align-items: center;
     min-height: 20px;
+    z-index: 1;
 }
 
 nav ul{
@@ -73,9 +74,16 @@ nav ul li a:hover{
 
 /*header image & title*/
 
-.parallax-img2{
-  width: 100%;
+#home-img{
   background-image: url('/img/Creation_of_Adam1.jpg');
+}
+
+#sources-img{
+  background-image: url('/img/Dries-a-david.jpg');
+}
+
+.parallax-img{
+  width: 100%;
   height:100%;
   background-attachment: fixed;
   background-position: center;
@@ -83,22 +91,13 @@ nav ul li a:hover{
   background-size: cover;
 }
 
-.title1 {
+.title {
   font-size: 50px;
   text-shadow: 0 0 7px rgb(8, 0, 59);
   color: #fff;
-  padding-top: 575px;
+  margin-top: 575px;
   letter-spacing: 1px;
   text-align: center;
-}
-
-.title {
-    font-size: 48px;
-    text-shadow: 0 0 7px rgb(8, 0, 59);
-    color: #fff;
-    padding-top: 500px;
-    letter-spacing: 1px;
-    text-align: center;
 }
 
 /*About section*/
@@ -225,15 +224,7 @@ canvas {
 }
 
 /*Credits*/
-.parallax-img{
-  width: 100%;
-  background-image: url('/img/Dries-a-david.jpg');
-  min-height: 600px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 
 .sources-table{
   width: 80%;
