@@ -48,7 +48,7 @@ nav ul{
     display: flex; 
     justify-content: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 24px;
   
 }
 
@@ -58,7 +58,9 @@ nav ul li{
 }
 
 nav ul li a{
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset:8px; 
+    text-decoration-thickness: .5px;
     padding: 20px 10px;
     border-radius: 15%;
     color: rgb(8, 0, 59)
@@ -80,7 +82,7 @@ nav ul li a:hover{
 
 
 .title {
-    font-size: 45px;
+    font-size: 48px;
     text-shadow: 0 0 7px rgb(8, 0, 59);
     color: #fff;
     padding-top: 500px;
