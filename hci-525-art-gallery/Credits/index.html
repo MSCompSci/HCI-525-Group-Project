@@ -6,14 +6,27 @@
     <title>Art Gallery</title>
     <link href="/src/style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        nav ul li a{
+            color: white;
+        }
+    </style>
     </head>
     <body>
         <nav>
-            <a href="../Gallery/index.html">3D Gallery</a>
-            <a href="../index.html">Traditional Website Version</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Gallery/index.html">3D Art Gallery</a></li>
+                <li><a href="../Timeline/index.html">Timeline</a></li>
+                <li><a href="./index.html">Resources</a></li>
+            </ul>
         </nav>
-        <h1>Asset Credits</h1>
-        <table>
+        <header>
+            <div class="parallax-img" id="sources-img">
+            <h1 class="title">Resources and Assets Used</h1>
+            </div>
+        </header>
+        <table class="sources-table">
             <tr>
                 <th>Asset</th>
                 <th>Asset Type</th>
