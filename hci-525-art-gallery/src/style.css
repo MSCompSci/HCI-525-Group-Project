@@ -72,14 +72,25 @@ nav ul li a:hover{
 }
 
 /*header image & title*/
-.img-chapel{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    z-index: -1;
+
+.parallax-img2{
+  width: 100%;
+  background-image: url('/img/Creation_of_Adam1.jpg');
+  height:100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.title1 {
+  font-size: 50px;
+  text-shadow: 0 0 7px rgb(8, 0, 59);
+  color: #fff;
+  padding-top: 575px;
+  letter-spacing: 1px;
+  text-align: center;
+}
 
 .title {
     font-size: 48px;
