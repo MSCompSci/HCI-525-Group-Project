@@ -12,6 +12,7 @@ This is an interactive 3D art gallery of some of Michelagelo's works built for a
 - [Skybox](https://polyhaven.com/a/pizzo_pernice_puresky)
 - [Walls](https://polyhaven.com/a/marble_01)
 - [Statue Model Texture](https://3dtextures.me/2019/06/05/quartz-003/)
+- [Statue Stand Texture](https://polyhaven.com/a/brushed_concrete)
 
 ### Model Sources
 
