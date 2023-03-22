@@ -220,8 +220,8 @@ class MainApp {
     let width = 1;
 
     // floor
-    const floorW = 50;
-    const floorL = 89;
+    const floorW = 69;
+    const floorL = 125;
     const floorText = {
       map: '../assets/Floor/Stone_Floor_004_SD/Substance_Graph_BaseColor.jpg',
       roughmap: '../assets/Floor/Stone_Floor_004_SD/Substance_Graph_Roughness.jpg',
@@ -229,7 +229,7 @@ class MainApp {
     }
 
     // walls
-    const wallHeight = 25;
+    const wallHeight = 45;
     const wallText = {
       base: '../assets/Wall/marble_01_1k/marble_01_diff_1k.jpg',
       rough: '../assets/Wall/marble_01_1k/marble_01_rough_1k.jpg',
@@ -247,12 +247,13 @@ class MainApp {
     world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallN
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallW
     world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallE
-    world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .16, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
+    world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .221, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
     world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -10, Math.PI/2, true), // pieta
     world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -14.5, -Math.PI/2, true), // madonna
     world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -25, 2*Math.PI, true), // david
     world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
     world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
+    world3D.painting('../assets/Paintings/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6)
     ]).then(models => { // then create items in scene
       
 
@@ -326,6 +327,15 @@ class MainApp {
       this.scene.add(madonnaStand)
       const madonnaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(17, 2.2, -13).setFriction(.01);
       this.world.createCollider(madonnaStandColliderDesc);
+
+      //paintings
+      const sistineChapelCeiling: any = models[12]
+      sistineChapelCeiling.translateY((13.41*2.6)/2+3)
+      sistineChapelCeiling.translateX(floorW/2-1)
+      sistineChapelCeiling.rotateY(Math.PI/2)
+      sistineChapelCeiling.name = 'sistine chapel';
+      this.interactiveItems.push(sistineChapelCeiling.name)
+      this.scene.add(sistineChapelCeiling)
 
       // doorway
       const geometry = new BoxGeometry( 5, 10, 1 );
