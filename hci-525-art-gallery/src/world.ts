@@ -1,4 +1,4 @@
-import { CubeTextureLoader, LoadingManager, TextureLoader,  RepeatWrapping, Mesh, BoxGeometry, MeshStandardMaterial, PlaneGeometry, MeshBasicMaterial, MeshPhongMaterial } from "three";
+import { CubeTextureLoader, LoadingManager, TextureLoader,  RepeatWrapping, Mesh, BoxGeometry, MeshStandardMaterial } from "three";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 class World{
@@ -108,7 +108,7 @@ class World{
             const texture = this.textureLoader.loadAsync(image)
             Promise.all([texture]).then(texts=>{
                 //this.textureWrap(texts, x, y);
-                const painting = new Mesh(new BoxGeometry(x, y, 1), new MeshStandardMaterial(
+                const painting = new Mesh(new BoxGeometry(x, y, .1), new MeshStandardMaterial(
                     {
                         map: texts[0],
                         roughness: roughnum
