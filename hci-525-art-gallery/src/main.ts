@@ -73,7 +73,7 @@ class MainApp {
     }*/
 
     // camera
-    const camStartPos = new Vector3(0, 4, 20)
+    const camStartPos = new Vector3(0, 4, 40)
     this.camera = new PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 150); //create camera
     this.camera.position.set(camStartPos.x, camStartPos.y, camStartPos.z); //set starting position
 
@@ -264,7 +264,12 @@ class MainApp {
     world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -40, 2*Math.PI, true), // david
     world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
     world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
-    world3D.painting('../assets/Paintings/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6)
+    world3D.painting('../assets/Paintings/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6), //chapel ceiling
+    world3D.painting('../assets/Paintings/creation-of-adam.jpg', 4.6*2.6, 2.1*2.6, 0.6), // creation of adam
+    world3D.painting('../assets/Paintings/drunkeness-of-noah.jpg', 4.6*2.6, 3.2*2.6, 0.6), // drunkeness of noah
+    world3D.wall(18,12,1,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
+    world3D.painting('../assets/Paintings/JuliusII.jpg', 0.319*20, 0.51*20, 0.6), // Julius II sketch
+    world3D.painting('../assets/Paintings/delphic-sibyl.jpg', 0.319*20, 0.51*20, 0.6), // delphic sibyl
     ]).then(models => { // then create items in scene
       
 
@@ -349,6 +354,44 @@ class MainApp {
       sistineChapelCeiling.name = 'sistine chapel';
       this.interactiveItems.push(sistineChapelCeiling.name)
       this.scene.add(sistineChapelCeiling)
+
+      const adam: any = models[13]
+      adam.translateY(6)
+      adam.translateX(0)
+      adam.translateZ(26-.5)
+      adam.name = 'creation of adam';
+      this.interactiveItems.push(adam.name)
+      this.scene.add(adam)
+
+      const noah: any = models[14]
+      noah.translateY(8)
+      noah.translateX(-floorW/2+1)
+      noah.rotateY(Math.PI/2)
+      noah.name = 'drunkeness of noah';
+      this.interactiveItems.push(noah.name)
+      this.scene.add(noah)
+
+      const paintWall:any = models[15]
+      paintWall.translateZ(25)
+      this.scene.add(paintWall)
+
+      const julius: any = models[16]
+      julius.translateY(8)
+      julius.translateX(-floorW/2+1)
+      julius.translateZ(30)
+      julius.rotateY(Math.PI/2)
+      julius.name = 'julius II tomb';
+      this.interactiveItems.push(julius.name)
+      this.scene.add(julius)
+
+      const delphic: any = models[17]
+      delphic.translateY(6.5)
+      delphic.translateX(0)
+      delphic.translateZ(24+.5)
+      delphic.name = 'delphic sibyl';
+      this.interactiveItems.push(delphic.name)
+      this.scene.add(delphic)
+
 
       // doorway
       const geometry = new BoxGeometry( 5, 10, 1 );
