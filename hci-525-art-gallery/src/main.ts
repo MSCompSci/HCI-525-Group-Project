@@ -12,7 +12,6 @@ import {
   MeshBasicMaterial,
   Vector3,
   Camera,
-  BoxGeometry,
   //SpotLightHelper,
   SpotLight,
   //LineBasicMaterial, //For rapier3d debug
@@ -124,7 +123,7 @@ class MainApp {
     lightD.shadow.camera.right = -100;
     lightD.shadow.camera.top = 100;
     lightD.shadow.camera.bottom = -100;
-    lightD.shadow.bias = -0.001;
+    lightD.shadow.bias = -0.005;
     this.scene.add(lightD);
     const lightA = new AmbientLight(0x404040, .8); // ambient light
     this.scene.add(lightA);
@@ -160,6 +159,61 @@ class MainApp {
     this.scene.add(spotLightMadonna)
     this.scene.add(spotLightMadonna.target)
     //const helper = new SpotLightHelper(spotLightMadonna);
+    //this.scene.add(helper);
+
+    const spotLightAdam = new SpotLight(color, .6)
+    spotLightAdam.position.set(0,50,60)
+    spotLightAdam.target.position.set(0,6,25)
+    spotLightAdam.penumbra = 1;
+    spotLightAdam.angle = Math.PI/12;
+    spotLightAdam.castShadow = true;
+    this.scene.add(spotLightAdam)
+    this.scene.add(spotLightAdam.target)
+    //const helper = new SpotLightHelper(spotLightAdam);
+    //this.scene.add(helper);
+
+    const spotLightJulius = new SpotLight(color, .4)
+    spotLightJulius.position.set(5,47,28)
+    spotLightJulius.target.position.set(-30,11.75,30)
+    spotLightJulius.penumbra = 1;
+    spotLightJulius.angle = Math.PI/28;
+    spotLightJulius.castShadow = true;
+    this.scene.add(spotLightJulius)
+    this.scene.add(spotLightJulius.target)
+    //const helper = new SpotLightHelper(spotLightJulius);
+    //this.scene.add(helper);
+
+    const spotLightNoah = new SpotLight(color, .2)
+    spotLightNoah.position.set(5,47,28)
+    spotLightNoah.target.position.set(-30,11.75,3)
+    spotLightNoah.penumbra = 1;
+    spotLightNoah.angle = Math.PI/26;
+    spotLightNoah.castShadow = true;
+    this.scene.add(spotLightNoah)
+    this.scene.add(spotLightNoah.target)
+    //const helper = new SpotLightHelper(spotLightNoah);
+    //this.scene.add(helper);
+
+    const spotLightNoah2 = new SpotLight(color, .2)
+    spotLightNoah2.position.set(5,47,-28)
+    spotLightNoah2.target.position.set(-30,11.75,-3)
+    spotLightNoah2.penumbra = 1;
+    spotLightNoah2.angle = Math.PI/26;
+    spotLightNoah2.castShadow = true;
+    this.scene.add(spotLightNoah2)
+    this.scene.add(spotLightNoah2.target)
+    //const helper = new SpotLightHelper(spotLightNoah2);
+    //this.scene.add(helper);
+
+    const spotLightDelphic = new SpotLight(color, .4)
+    spotLightDelphic.position.set(5,47,-28)
+    spotLightDelphic.target.position.set(0,6,25)
+    spotLightDelphic.penumbra = 1;
+    spotLightDelphic.angle = Math.PI/26;
+    spotLightDelphic.castShadow = true;
+    this.scene.add(spotLightDelphic)
+    this.scene.add(spotLightDelphic.target)
+    //const helper = new SpotLightHelper(spotLightDelphic);
     //this.scene.add(helper);
 
     // loading manager
@@ -270,6 +324,8 @@ class MainApp {
     world3D.wall(18,12,1,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
     world3D.painting('../assets/Paintings/JuliusII.jpg', 0.319*20, 0.51*20, 0.6), // Julius II sketch
     world3D.painting('../assets/Paintings/delphic-sibyl.jpg', 0.319*20, 0.51*20, 0.6), // delphic sibyl
+    world3D.gltfModel('../assets/Door/gothic-stone-doorway.gltf',3,0,0,floorL/2-1,0,true),
+    world3D.painting('../assets/Door/virtual-tour.png', 8, 14, 0), // sistine chapel tour
     ]).then(models => { // then create items in scene
       
 
@@ -374,6 +430,8 @@ class MainApp {
       const paintWall:any = models[15]
       paintWall.translateZ(25)
       this.scene.add(paintWall)
+      const paintWallSColliderDesc = RAPIER.ColliderDesc.cuboid(18 / 2, 12 / 2, 0.5).setTranslation(0, 0, 25).setFriction(.01);
+      this.world.createCollider(paintWallSColliderDesc);
 
       const julius: any = models[16]
       julius.translateY(8)
@@ -394,9 +452,9 @@ class MainApp {
 
 
       // doorway
-      const geometry = new BoxGeometry( 5, 10, 1 );
-      const material = new MeshBasicMaterial( { color: 0x00ff00 } );
-      const doorway = new Mesh( geometry, material );
+      const doorModel: any = models[18]
+      this.scene.add(doorModel)
+      const doorway:any = models[19]
       doorway.position.set(0, 5, floorL/2-1)
       doorway.name = 'doorway';
       this.interactiveItems.push(doorway.name);
