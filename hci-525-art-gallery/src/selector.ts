@@ -5,6 +5,7 @@ import {
     Mesh,
     Scene,
 } from "three";
+import data from './object-data.json';
 
 class Selector {
     camDirV: Vector3;
@@ -89,9 +90,21 @@ class Selector {
         const itemInfo = document.getElementById('item-info');
         const itemTitle = document.getElementById('item-title');
         const itemDesc = document.getElementById('item-desc');
-        if (itemBlocker && itemInfo && itemTitle && itemDesc) {
-            itemTitle.textContent = objectName;
-            itemDesc.textContent = objectName;
+        const itemYear = document.getElementById('item-year');
+        const itemMedium = document.getElementById('item-medium');
+        const itemLink = document.getElementById('item-link');
+        const itemImage = document.getElementById('item-image');
+        // TODO add citations?
+        if (itemBlocker && itemInfo && itemTitle && itemDesc && itemYear && itemMedium && itemLink && itemImage) {
+            if (data.hasOwnProperty(objectName) ){
+                itemTitle.textContent = objectName;
+                itemDesc.textContent = data[objectName].desc;
+                itemYear.textContent = data[objectName].year;
+                itemMedium.textContent = data[objectName].medium;
+                itemLink.setAttribute("href", data[objectName].link);
+                itemImage.setAttribute("alt", data[objectName].alt);
+                itemImage.setAttribute("src", data[objectName].image);
+            }
             itemBlocker.style.display = 'block';
             itemInfo.style.display = '';
         }

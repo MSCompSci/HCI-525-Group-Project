@@ -1,0 +1,74 @@
+{
+    "David": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/David_(Michelangelo)",
+        "image": "../img/David.jpg",
+        "alt": "The statue David",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "The Vatican Pietà": {
+        "year": "1498-1499",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Piet%C3%A0_(Michelangelo)",
+        "image": "../img/Pieta.jpg",
+        "alt": "The statue Pietà in the Vatican",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "Madonna of Burges": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "",
+        "alt": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "Sistine Chapel Ceiling":{
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "",
+        "alt": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "The Creation of Adam": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "../img/Creation_of_Adam1.jpg",
+        "alt": "The Creation of Adam by Michelagelo",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "The Delphic Sibyl": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "",
+        "alt": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "The Drunkenness of Noah": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "",
+        "alt": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "Design for the Tomb of Pope Julius II della Rovere": {
+        "year": "1501-1504",
+        "medium": "Marble Statue",
+        "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
+        "image": "",
+        "alt": "",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    }
+}

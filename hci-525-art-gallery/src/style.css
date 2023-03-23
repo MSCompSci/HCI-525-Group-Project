@@ -72,6 +72,10 @@ nav ul li a:hover{
     color: #fff;
 }
 
+.white-nav-link{
+  color:white;
+}
+
 /*header image & title*/
 
 #home-img{
@@ -140,10 +144,14 @@ section p1{
   align-items: center;
 }
 
+#loading-text, #resource-load{
+  text-align: center;
+  font-size: 1.2em;
+}
+
 #loading-prog {
-  width: 80%;
-  min-height: 150px;
-  max-width: 300px;
+  width: 200px;
+  height: 100px;
   margin: 0 auto;
   background-color: white;
   padding: 5em;
@@ -179,6 +187,7 @@ canvas {
 
 #instructions {
   width: 100%;
+  margin: 0 auto;
   height: 100%;
   text-align: center;
   font-size: 14px;
@@ -189,7 +198,32 @@ canvas {
 
 }
 
+#gallery-menu{
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.gallery-menu-link{
+  font-size: .9em;
+  padding: 10px;
+}
+
+.menu-instructions{
+  font-size: 1.2em;
+  margin: 15px auto;
+  width: 65%;
+  text-align: center;
+  padding: 18px;
+  border-radius: 30px;
+  background-color: rgb(235, 235, 235);
+}
+
 #instructionsBlock {
+  height: 350px;
+  width: 400px;
+  margin: 0 auto;
   background-color: white;
   padding: 30px;
   border-radius: 30px;
@@ -216,13 +250,99 @@ canvas {
 }
 
 #item-popup{
-  min-width: 400px;
-  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+  gap: none;
+  max-width: 700px;
+  height: 700px;
   background-color: white;
   padding: 30px;
   border-radius: 30px;
+  margin: 0 auto;
 }
 
+#item-title {
+  text-align: left;
+  margin-left: 2%;
+  margin-top: 10%;
+  margin-right: 2%;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  width: 90%;
+}
+
+#item-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.item-image-con{
+  width: 60%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.secondary-img{
+  width: 45%;
+  height: auto;
+  margin:0;
+}
+#item-facts{
+  width: 40%;
+  height: auto;
+}
+
+#item-facts p, a{
+  margin-left: 2%;
+  width: 100%;
+  font-size: 1.9em;
+  line-height: 130%;
+  color: black;
+  text-align: left;
+}
+#item-facts a i{
+  font-size: 0.85em;
+  margin-left: 2%;
+
+}
+#item-facts a{
+  position: relative;
+  z-index: 5;
+  left: 0;
+  border-radius: 5px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+#item-facts a:hover{
+  background-color: lightblue;
+
+}
+#item-desc {
+  font-size: 1.5em;
+  width: 55%;
+  height: 40%;
+  text-align: left;
+  margin-top: 2%;
+}
+#item-citations{
+  height: 70px;
+  width: 100%;
+  text-align: left;
+}
+#close-instructions{
+  width: 100%;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 10px;
+}
 /*Credits*/
 
 

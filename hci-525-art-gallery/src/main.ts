@@ -372,17 +372,17 @@ class MainApp {
 
       //statues
       const pieta: any = models[7];
-      pieta.children[0].name = 'pieta'
+      pieta.children[0].name = 'The Vatican Pietà'
       this.interactiveItems.push(pieta.children[0].name)
       this.scene.add(pieta);
 
       const madonna: any = models[8];
-      madonna.children[0].name = 'madonna'
+      madonna.children[0].name = 'Madonna of Burges'
       this.interactiveItems.push(madonna.children[0].name)
       this.scene.add(madonna);
 
       const david: any = models[9];
-      david.children[0].name = 'david'
+      david.children[0].name = 'David'
       this.interactiveItems.push(david.children[0].name)
       this.scene.add(david);
       const davidColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,2).setTranslation(0, 2.2, -42).setFriction(.01);
@@ -407,7 +407,7 @@ class MainApp {
       sistineChapelCeiling.translateY((13.41*2.6)/2+3)
       sistineChapelCeiling.translateX(floorW/2-1)
       sistineChapelCeiling.rotateY(Math.PI/2)
-      sistineChapelCeiling.name = 'sistine chapel';
+      sistineChapelCeiling.name = 'Sistine Chapel Ceiling';
       this.interactiveItems.push(sistineChapelCeiling.name)
       this.scene.add(sistineChapelCeiling)
 
@@ -415,7 +415,7 @@ class MainApp {
       adam.translateY(6)
       adam.translateX(0)
       adam.translateZ(26-.5)
-      adam.name = 'creation of adam';
+      adam.name = 'The Creation of Adam';
       this.interactiveItems.push(adam.name)
       this.scene.add(adam)
 
@@ -423,7 +423,7 @@ class MainApp {
       noah.translateY(8)
       noah.translateX(-floorW/2+1)
       noah.rotateY(Math.PI/2)
-      noah.name = 'drunkeness of noah';
+      noah.name = 'The Drunkenness of Noah';
       this.interactiveItems.push(noah.name)
       this.scene.add(noah)
 
@@ -438,7 +438,7 @@ class MainApp {
       julius.translateX(-floorW/2+1)
       julius.translateZ(30)
       julius.rotateY(Math.PI/2)
-      julius.name = 'julius II tomb';
+      julius.name = 'Design for the Tomb of Pope Julius II della Rovere';
       this.interactiveItems.push(julius.name)
       this.scene.add(julius)
 
@@ -446,7 +446,7 @@ class MainApp {
       delphic.translateY(6.5)
       delphic.translateX(0)
       delphic.translateZ(24+.5)
-      delphic.name = 'delphic sibyl';
+      delphic.name = 'The Delphic Sibyl';
       this.interactiveItems.push(delphic.name)
       this.scene.add(delphic)
 
