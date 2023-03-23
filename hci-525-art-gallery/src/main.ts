@@ -318,12 +318,12 @@ class MainApp {
     world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -40, 2*Math.PI, true), // david
     world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
     world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
-    world3D.painting('../assets/Paintings/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6), //chapel ceiling
-    world3D.painting('../assets/Paintings/creation-of-adam.jpg', 4.6*2.6, 2.1*2.6, 0.6), // creation of adam
-    world3D.painting('../assets/Paintings/drunkeness-of-noah.jpg', 4.6*2.6, 3.2*2.6, 0.6), // drunkeness of noah
+    world3D.painting('../img/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6), //chapel ceiling
+    world3D.painting('../img/Creation_of_Adam1.jpg', 4.6*2.6, 2.1*2.6, 0.6), // creation of adam
+    world3D.painting('../img/drunkeness-of-noah.jpg', 4.6*2.6, 3.2*2.6, 0.6), // drunkeness of noah
     world3D.wall(18,12,1,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
-    world3D.painting('../assets/Paintings/JuliusII.jpg', 0.319*20, 0.51*20, 0.6), // Julius II sketch
-    world3D.painting('../assets/Paintings/delphic-sibyl.jpg', 0.319*20, 0.51*20, 0.6), // delphic sibyl
+    world3D.painting('../img/JuliusII.jpg', 0.319*20, 0.51*20, 0.6), // Julius II sketch
+    world3D.painting('../img/delphic-sibyl.jpg', 0.319*20, 0.51*20, 0.6), // delphic sibyl
     world3D.gltfModel('../assets/Door/gothic-stone-doorway.gltf',3,0,0,floorL/2-1,0,true),
     world3D.painting('../assets/Door/virtual-tour.png', 8, 14, 0), // sistine chapel tour
     ]).then(models => { // then create items in scene
@@ -456,7 +456,7 @@ class MainApp {
       this.scene.add(doorModel)
       const doorway:any = models[19]
       doorway.position.set(0, 5, floorL/2-1)
-      doorway.name = 'doorway';
+      doorway.name = 'Virtual Sistine Chapel Tour';
       this.interactiveItems.push(doorway.name);
       this.scene.add( doorway );
 

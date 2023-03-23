@@ -21,23 +21,23 @@
         "year": "1501-1504",
         "medium": "Marble Statue",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
-        "image": "",
-        "alt": "",
+        "image": "../img/Madonna.jpg",
+        "alt": "The statue the Madonna of Burges in the Vatican",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "citations": [{}]
     },
     "Sistine Chapel Ceiling":{
         "year": "1501-1504",
-        "medium": "Marble Statue",
+        "medium": "Fresco",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
-        "image": "",
-        "alt": "",
+        "image": "../img/CAPPELLA_SISTINA_Ceiling.jpg",
+        "alt": "The full Sistine Chapel ceiling",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "citations": [{}]
     },
     "The Creation of Adam": {
         "year": "1501-1504",
-        "medium": "Marble Statue",
+        "medium": "Fresco",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/Creation_of_Adam1.jpg",
         "alt": "The Creation of Adam by Michelagelo",
@@ -46,28 +46,37 @@
     },
     "The Delphic Sibyl": {
         "year": "1501-1504",
-        "medium": "Marble Statue",
+        "medium": "Fresco",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
-        "image": "",
-        "alt": "",
+        "image": "../img/delphic-sibyl.jpg",
+        "alt": "The Delphic Sibyl fresco",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "citations": [{}]
     },
     "The Drunkenness of Noah": {
         "year": "1501-1504",
-        "medium": "Marble Statue",
+        "medium": "Fresco",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
-        "image": "",
-        "alt": "",
+        "image": "../img/drunkeness-of-noah.jpg",
+        "alt": "The Drunkenness of Noah fresco",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "citations": [{}]
     },
     "Design for the Tomb of Pope Julius II della Rovere": {
         "year": "1501-1504",
-        "medium": "Marble Statue",
+        "medium": "Pen with brown ink",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
-        "image": "",
-        "alt": "",
+        "image": "../img/JuliusII.jpg",
+        "alt": "A sketch of the design for the tomb of Pope Julius II",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "citations": [{}]
+    },
+    "Virtual Sistine Chapel Tour": {
+        "year": "1501-1504",
+        "medium": "Virtual Environment",
+        "link": "https://www.museivaticani.va/content/museivaticani/en/collezioni/musei/cappella-sistina/tour-virtuale.html",
+        "image": "../img/Sistine_Chapel_ceiling_02_(brightened).jpg",
+        "alt": "View of the interior of the Sistine Chapel",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "citations": [{}]
     }
