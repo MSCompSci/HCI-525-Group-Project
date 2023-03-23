@@ -297,7 +297,7 @@ canvas {
   height: auto;
 }
 
-#item-facts p, a{
+#item-facts p, #item-facts a{
   margin-left: 2%;
   width: 100%;
   font-size: 1.9em;
@@ -315,7 +315,6 @@ canvas {
   z-index: 5;
   left: 0;
   border-radius: 5px;
-  text-align: left;
   display: flex;
   align-items: center;
   justify-content: center;

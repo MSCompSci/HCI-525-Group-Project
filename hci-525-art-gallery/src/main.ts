@@ -392,14 +392,14 @@ class MainApp {
       pietaStand.translateX(-17)
       pietaStand.translateZ(-18)
       this.scene.add(pietaStand)
-      const pietaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(-17, 2.2, -13).setFriction(.01);
+      const pietaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(-17, 2.2, -18).setFriction(.01);
       this.world.createCollider(pietaStandColliderDesc);
 
       const madonnaStand: any = models[11];
       madonnaStand.translateX(17)
       madonnaStand.translateZ(-23)
       this.scene.add(madonnaStand)
-      const madonnaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(17, 2.2, -13).setFriction(.01);
+      const madonnaStandColliderDesc = RAPIER.ColliderDesc.cuboid(2,1.7/2,3).setTranslation(17, 2.2, -23).setFriction(.01);
       this.world.createCollider(madonnaStandColliderDesc);
 
       //paintings
