@@ -112,11 +112,104 @@ nav ul li a:hover{
     text-align: center;
 }
 
-section p1{
+.about{
+    display: block;
+    padding-left: 100px;
+    padding-right: 100px;
     text-align: center;
     font-size: 1.25em;
     line-height: 150%;
 }
+
+/*Timeline*/
+.timeline-title{
+  font-size: 2.5em;
+  color: rgb(8, 0, 59);
+  padding-top: 150px;
+  text-align: center;
+}
+
+.timeline ul{
+  padding:50px 0;
+  color: rgb(8, 0, 59);
+}
+
+.timeline ul li{
+  list-style: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background-color: rgb(14, 2, 92)
+}
+
+.timeline time{
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px; 
+  font-weight: 700;
+}
+
+.timeline ul li:after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.5s;
+  background-color: inherit;
+  z-index: 1; 
+}
+
+.timeline ul li div {
+  position: relative;
+  bottom: 0;
+  width: 400px; 
+  padding: 15px; 
+  background-color: rgb(250, 229, 194);
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.timeline ul li:nth-child(odd) div{
+  left: 50px;
+  transform: translateX(200px);
+}
+
+.timeline ul li:nth-child(even) div{
+  left: calc(-400px - 80px + 6px);
+  transform: translateX(-200px);
+}
+
+.timeline ul li.in-view:after{
+  background-color:rgb(250, 229, 194);
+}
+
+.timeline ul li.in-view div{
+  transform: none !important;
+  opacity: 1;
+}
+
+
+@media screen and (max-width: 600px){
+  .timeline ul li{
+    margin-left: 20px;
+  }
+  .timeline ul li div{
+    width: calc(100vw - 90px);
+  }
+  .timeline ul li:nth-child(even) div{
+    left: 50px;
+  }
+}
+
+.img-time{
+  max-width: 400px;
+}
+
 
 
 /*3D app*/
