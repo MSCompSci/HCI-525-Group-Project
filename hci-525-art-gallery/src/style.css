@@ -169,7 +169,7 @@ nav ul li a:hover{
   bottom: 0;
   width: 400px; 
   padding: 15px; 
-  background-color: rgb(250, 229, 194);
+  background-color: rgb(226, 240, 248);
   transition: all 0.5s;
   opacity: 0;
 }
@@ -185,7 +185,7 @@ nav ul li a:hover{
 }
 
 .timeline ul li.in-view:after{
-  background-color:rgb(250, 229, 194);
+  background-color:rgb(217, 236, 247);
 }
 
 .timeline ul li.in-view div{
