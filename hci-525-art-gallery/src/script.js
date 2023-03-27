@@ -13,6 +13,7 @@ function callBack(){
     for(var i = 0; i < items.length; i++){
         if(elementInView(items[i])){
             items[i].classList.add("in-view")
+        
         }
     }
 }
@@ -20,6 +21,3 @@ function callBack(){
 window.onload = callBack;
 window.onresize = callBack;
 window.onscroll = callBack;
-
-
- 
