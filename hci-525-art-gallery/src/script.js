@@ -5,7 +5,7 @@ function elementInView(el){
 
     return(
         rect.top>= 0 &&
-        rect.buttom <= (window.innerHeight || document.documentElement.clientHeight )
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight )
     )
 }
 
@@ -20,3 +20,6 @@ function callBack(){
 window.onload = callBack;
 window.onresize = callBack;
 window.onscroll = callBack;
+
+
+ 
