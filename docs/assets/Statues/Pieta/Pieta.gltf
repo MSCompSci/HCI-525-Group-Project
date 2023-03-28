@@ -1,0 +1,149 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v3.4.50",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "pieta-in-st-peter-s-basilica-vatican-3.001"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Material.002",
+            "normalTexture" : {
+                "index" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.8545454740524292
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "pieta-in-st-peter-s-basilica-vatican-3.002",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "TEXCOORD_0" : 1,
+                        "NORMAL" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "Pieta_N",
+            "uri" : "PietaTextures/Pieta_N.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Pieta_D",
+            "uri" : "PietaTextures/Pieta_D.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 48489,
+            "max" : [
+                1.9454712867736816,
+                1.8589156866073608,
+                -0.0015413376968353987
+            ],
+            "min" : [
+                0.0010216875234618783,
+                8.999882265925407e-05,
+                -1.2813040018081665
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 48489,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 48489,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 214092,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 581868,
+            "byteOffset" : 0,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 387912,
+            "byteOffset" : 581868,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 581868,
+            "byteOffset" : 969780,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 428184,
+            "byteOffset" : 1551648,
+            "target" : 34963
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 1979832,
+            "uri" : "Pieta.bin"
+        }
+    ]
+}

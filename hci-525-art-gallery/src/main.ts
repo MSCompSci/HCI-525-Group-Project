@@ -308,20 +308,20 @@ class MainApp {
 
     Promise.all([world3D.skybox(), // check if all assets are loaded
     world3D.floor(floorW, floorL, 0.6, floorText.map, floorText.roughmap, floorText.aomap), // floor
-    world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallS
-    world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallN
-    world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallW
-    world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base, wallText.rough, wallText.ao), //wallE
+    world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base), //wallS
+    world3D.wall(floorW, wallHeight, 1, 0.6, false, false, wallText.base), //wallN
+    world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base), //wallW
+    world3D.wall(floorL, wallHeight, 1, 0.6, false, false, wallText.base), //wallE
     world3D.gltfModel('../assets/Ceiling/Ratatouille - Skylight/Ratatouille - Skylight.gltf', .221, 0, wallHeight + .25, 0, -Math.PI / 2, false), // ceiling
-    world3D.gltfModel('../assets/Statues/Pieta.gltf', 3.1, -15, 2.2, -15, Math.PI/2, true), // pieta
-    world3D.gltfModel('../assets/Statues/Madonna.gltf', 3, 15.5, 2.2, -24.5, -Math.PI/2, true), // madonna
-    world3D.gltfModel('../assets/Statues/David.gltf', 3, -4, 0.5, -40, 2*Math.PI, true), // david
-    world3D.wall(4,1.7,6,0.6,true,true,standText.base,standText.rough, standText.ao),
-    world3D.wall(4,1.7,6,0.6,true,true,standText.base, standText.rough, standText.ao),
+    world3D.gltfModel('../assets/Statues/Pieta/Pieta.gltf', 3.1, -15, 2.2, -15, Math.PI/2, true), // pieta
+    world3D.gltfModel('../assets/Statues/Madonna/Madonna.gltf', 3, 15.5, 2.2, -24.5, -Math.PI/2, true), // madonna
+    world3D.gltfModel('../assets/Statues/David/David.gltf', 3, -4, 0.5, -40, 2*Math.PI, true), // david
+    world3D.wall(4,1.7,6,0.6,true,true,standText.base),
+    world3D.wall(4,1.7,6,0.6,true,true,standText.base),
     world3D.painting('../img/CAPPELLA_SISTINA_Ceiling.jpg', 40.93*2.6, 13.41*2.6, 0.6), //chapel ceiling
     world3D.painting('../img/Creation_of_Adam1.jpg', 4.6*2.6, 2.1*2.6, 0.6), // creation of adam
     world3D.painting('../img/drunkeness-of-noah.jpg', 4.6*2.6, 3.2*2.6, 0.6), // drunkeness of noah
-    world3D.wall(18,12,1,0.6,true,true,wallText.base, wallText.rough, wallText.ao),
+    world3D.wall(18,12,1,0.6,true,true,wallText.base),
     world3D.painting('../img/JuliusII.jpg', 0.319*20, 0.51*20, 0.6), // Julius II sketch
     world3D.painting('../img/delphic-sibyl.jpg', 0.319*20, 0.51*20, 0.6), // delphic sibyl
     world3D.gltfModel('../assets/Door/gothic-stone-doorway.gltf',3,0,0,floorL/2-1,0,true),
@@ -530,7 +530,7 @@ class MainApp {
         // update physics
         this.world.step();
         // update controls and player position
-        this.wasd.con(this.camPair, 0.2, this.characterController);
+        this.wasd.con(this.camPair, 0.3, this.characterController);
       }
       const itemSelect = this.camItemSelect.itemHover(this.camera, this.scene, this.crossHairs, this.interactiveItems);
       this.viewing = itemSelect.immobile

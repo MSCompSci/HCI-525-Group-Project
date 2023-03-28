@@ -50,7 +50,7 @@ class Selector {
                 hover = true; //flag as hovering
 
                 // is the player within range of the door
-                if(this.objectName==='doorway'&&distance<6.5){ 
+                if(this.objectName==='Virtual Sistine Chapel Tour'&&distance<6.5){ 
                     let delta = this.prevDist - distance; // diff between distance and previous distance
                     if(delta>0.1){ // if player moves closer
                         door = true; // trigger popup

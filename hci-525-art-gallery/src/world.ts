@@ -46,9 +46,7 @@ class World{
                 const floor = new Mesh(new BoxGeometry(w, 1, l), new MeshStandardMaterial(
                     {
                         map: texts[0],
-                        roughnessMap: texts[1],
                         roughness: roughnum,
-                        aoMap: texts[2],
                     }
                 ));
                 floor.castShadow = false;
@@ -57,12 +55,10 @@ class World{
             })
         })
     }
-    wall(w:number, h:number, d:number, roughnum:number, shadowCast:boolean, shadowRec:boolean,  map:string, roughmap:string, aomap:string){
+    wall(w:number, h:number, d:number, roughnum:number, shadowCast:boolean, shadowRec:boolean,  map:string){
         return new Promise(resolve =>{
             const textures = [
-                this.textureLoader.loadAsync(map),
-                this.textureLoader.loadAsync(roughmap),
-                this.textureLoader.loadAsync(aomap)
+                this.textureLoader.loadAsync(map)
             ];
             Promise.all(textures).then(texts=>{
                 this.textureWrap(texts, w, h);
@@ -71,9 +67,7 @@ class World{
                     new MeshStandardMaterial(
                         {
                             map: texts[0],
-                            roughnessMap: texts[1],
                             roughness: roughnum,
-                            aoMap: texts[2],
                         }
                 ));
                 wall.castShadow = shadowCast;
