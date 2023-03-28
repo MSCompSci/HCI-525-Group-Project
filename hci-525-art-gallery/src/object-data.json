@@ -2,82 +2,91 @@
     "David": {
         "year": "1501-1504",
         "medium": "Marble Statue",
+        "location": "Florence, Italy",
         "link": "https://en.wikipedia.org/wiki/David_(Michelangelo)",
         "image": "../img/David.jpg",
         "alt": "The statue David",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "David is one of Michelangelo’s most famous works. Originally, the piece was to be completed by two other artists who had turned down the enormous piece of marble since they believed it to have too many imperfections, and therefore would not be stable for the 14 foot statue. After the block of marble sat for 25 years, and at the young age of just 26, Michelangelo was asked to complete the project. After 2 years of getting little to no sleep, hardly eating, and working his very hardest, Michelangelo created the remarkable David.",
+        "citations": ["Accademia.org. (2016, March 5). Michelangelo's david: Admire world's greatest sculpture at Accademia Gallery. Accademia.org. Retrieved March 28, 2023, from https://www.accademia.org/explore-museum/artworks/michelangelos-david/ "]
     },
     "The Vatican Pietà": {
-        "year": "1498-1499",
+        "year": "1498-1500",
         "medium": "Marble Statue",
+        "location": "Rome, Italy",
         "link": "https://en.wikipedia.org/wiki/Piet%C3%A0_(Michelangelo)",
         "image": "../img/Pieta.jpg",
         "alt": "The statue Pietà in the Vatican",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "This famous sculpture by Michelangelo was created for a side chapel at Old St. Peter’s Basilica in Rome Italy. The sculpture became so monumental, it is known for having launched Michelangelo’s career. Pieta depicts the Virgin Mary holding her son Jesus after she removed his lifeless body from the cross. Critics may claim that Michelangelo has made a grave mistake in that Mary’s body is significantly larger than Jesus’s. However, it is believed that this was intentional on Michelangelo’s part since the Virgin Mary would not have been able to hold Jesus as gracefully as she is shown to, had she been smaller than him. Additionally, Pieta is the only work in which Michelangelo signed his name.",
+        "citations": ["ItalianRenaissance.org. (n.d.). Michelangelo's pieta. ItalianRenaissance.org. Retrieved March 27, 2023, from http://www.italianrenaissance.org/michelangelos-pieta/"]
     },
     "Madonna of Burges": {
         "year": "1501-1504",
         "medium": "Marble Statue",
+        "location": "Transported to Bruges, Belgium once finished",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/Madonna.jpg",
         "alt": "The statue the Madonna of Burges in the Vatican",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "Madonna of Bruges is meant to represent the Virgin Mary and her son Jesus. Many similar sculptures before Madonna of Bruges depict the Madonna smiling gracefully at the child. However, in Michelangelo’s interpretation, he created the Madonna looking away from the child with a stoic expression. It is believed that this is meant to represent Mary’s acceptance of the fate of her son Jesus. It is also believed that the child’s upright posture, and minimal support from his mother  is meant to portray that he was born to be a leader. The Madonna of Bruges was the only piece of work by Michelangelo to have left Italy in his lifetime.",
+        "citations": ["Michelangelo.net. (n.d.). Madonna of Bruges. Madonna of Bruges by Michelangelo. Retrieved March 28, 2023, from https://www.michelangelo.net/madonna-of-bruges/"]
     },
     "Sistine Chapel Ceiling":{
-        "year": "1501-1504",
+        "year": "1508-1512",
         "medium": "Fresco",
+        "location": "Vatican City (Rome), Italy",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/CAPPELLA_SISTINA_Ceiling.jpg",
         "alt": "The full Sistine Chapel ceiling",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "The Sistine Chapel ceiling is one of the most famous works by Michelangelo. Taking 4 years to complete, and measuring just over 134 ft x 43 ft, numerous fresco paintings cover the ceiling. Originally, Michelangelo was tasked with painting the ceiling with the 12 apostles. However, Michelangelo himself suggested he rather paint the scenes from the Old Testament. The very center of the ceiling illustrates scenes such as the 3 stories of Noah, the creation and downfall of Adam & Eve, and the creation of Earth. Today, the Sistine Chapel is visited by millions every year and contains some of the most protected paintings in the entire world.",
+        "citations": ["Zappella, C. (n.d.). Ceiling of the sistine chapel. Smarthistory. Retrieved March 28, 2023, from https://smarthistory.org/michelangelo-ceiling-of-the-sistine-chapel/"]
     },
     "The Creation of Adam": {
-        "year": "1501-1504",
+        "year": "1508-1512",
         "medium": "Fresco",
+        "location": "Vatican City (Rome), Italy",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/Creation_of_Adam1.jpg",
         "alt": "The Creation of Adam by Michelagelo",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "The Sistine Chapel located in Rome, Italy features numerous paintings created by various different artists from the time period. However, the magnificent ceiling features works by Michelangelo. The center of the ceiling depicts the nine different scenes from the Book of Genesis in the Bible. The Creation of Adam illustrates God giving life to Adam, the first man. This piece, specifically the hands touching, have become an iconic symbol of humanity. On the right, we see God being held by several angels while he reaches out to Adam to initiate the beginning of the human race.",
+        "citations": ["ItalianRenaissance.org. (n.d.). Michelangelo's creation of adam. ItalianRenaissance.org. Retrieved March 28, 2023, from https://www.italianrenaissance.org/michelangelo-creation-of-adam/"]
     },
     "The Delphic Sibyl": {
-        "year": "1501-1504",
+        "year": "1509",
         "medium": "Fresco",
+        "location": "Vatican City (Rome), Italy",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/delphic-sibyl.jpg",
         "alt": "The Delphic Sibyl fresco",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "The Sistine Chapel located in Rome, Italy features numerous paintings created by various different artists from the time period. However, the magnificent ceiling features works by Michelangelo. The center of the ceiling depicts the nine different scenes from the Book of Genesis in the Bible. The Delphic Sibyl was a woman who was a prophet associated with early religious practices in Ancient Greece. In Michelangelo’s rendition of the Delphic Sibyl, we see Delphica listening to her attendants read to her as she suddenly turns towards the Judith scene in awe as her cloak and hair blown by The Holy Spirit.",
+        "citations": ["Michelangelo.org. (n.d.). The Delphic Sibyl by Michelangelo. Michelangelo.org. Retrieved March 28, 2023, from https://www.michelangelo.org/the-delphic-sibyl.jsp "]
     },
     "The Drunkenness of Noah": {
-        "year": "1501-1504",
+        "year": "1508-1512",
         "medium": "Fresco",
+        "location": "Vatican City (Rome), Italy",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/drunkeness-of-noah.jpg",
         "alt": "The Drunkenness of Noah fresco",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "The Sistine Chapel located in Rome, Italy features numerous paintings created by various different artists from the time period. However, the magnificent ceiling features works by Michelangelo. The center of the ceiling depicts the nine different scenes from the Book of Genesis in the Bible. As seen here, Noah is in the background working hard to till the soil to grow vines after the flood. However, he is also shown in the foreground as he has consumed too much wine, and falls asleep accidentally exposing himself. To the right of the unconscious Noah are his three sons, all of which are mocking his drunken, exposed body. The purpose of this work is also to demonstrate how humanity can be flawed, and brought back to spirituality.",
+        "citations": ["Michelangelo.net. (n.d.). Drunkenness of noah. Drunkenness of Noah by Michelangelo. Retrieved March 28, 2023, from https://www.michelangelo.net/drunkenness-of-noah/ "]
     },
     "Design for the Tomb of Pope Julius II della Rovere": {
-        "year": "1501-1504",
+        "year": "1505-1506",
         "medium": "Pen with brown ink",
+        "location": "",
         "link": "https://en.wikipedia.org/wiki/Madonna_of_Bruges",
         "image": "../img/JuliusII.jpg",
         "alt": "A sketch of the design for the tomb of Pope Julius II",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "Before his death, Pope Julius II made a plan to have a tomb constructed for himself. He had hired Michelangelo to design the structure in the new Saint Peter's Basilica. It was said to cost 10,000 Ducats which translates to roughly 1.5 million USD, and would take 5 years to complete. The tomb was designed to have a 3 story freestanding monument, and include nearly 47 marble sculptures. However, Michelangelo’s project was interrupted by other works such as the Sistine Chapel. Following the death of Pope Julius II, Michelangelo agreed to create a revised, simplified version of the tomb. This image is the first, original design of the tomb by Michelangelo.",
+        "citations": ["Italian, M. B. (n.d.). Michelangelo Buonarroti: Design for the tomb of pope julius II della rovere. The Metropolitan Museum of Art. Retrieved March 28, 2023, from https://www.metmuseum.org/art/collection/search/334655 "]
     },
     "Virtual Sistine Chapel Tour": {
         "year": "1501-1504",
         "medium": "Virtual Environment",
+        "location": "Vatican City (Rome), Italy",
         "link": "https://www.museivaticani.va/content/museivaticani/en/collezioni/musei/cappella-sistina/tour-virtuale.html",
         "image": "../img/Sistine_Chapel_ceiling_02_(brightened).jpg",
         "alt": "View of the interior of the Sistine Chapel",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "citations": [{}]
+        "desc": "The sistine Chapel ceiling is one of the most famous works by Michelangelo. Taking 4 years to complete, and measuring just over 134 ft x 43 ft, numerous fresco paintings cover the ceiling. Originally, Michelangelo was tasked with painting the ceiling with the 12 apostles. However, Michelangelo himself suggested he rather paint the scenes from the Old Testament. The very center of the ceiling illustrates scenes such as the 3 stories of Noah, the creation and downfall of Adam & Eve, and the creation of Earth. Today, the Sistine Chapel is visited by millions every year and contains some of the most protected paintings in the entire world. A virtual tour is available at the Vatican Museum website linked above.",
+        "citations": ["Zappella, C. (n.d.). Ceiling of the sistine chapel. Smarthistory. Retrieved March 28, 2023, from https://smarthistory.org/michelangelo-ceiling-of-the-sistine-chapel/"]
     }
 }

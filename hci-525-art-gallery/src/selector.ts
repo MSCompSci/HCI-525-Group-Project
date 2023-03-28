@@ -92,18 +92,22 @@ class Selector {
         const itemDesc = document.getElementById('item-desc');
         const itemYear = document.getElementById('item-year');
         const itemMedium = document.getElementById('item-medium');
+        const itemLoc = document.getElementById('item-location');
         const itemLink = document.getElementById('item-link');
         const itemImage = document.getElementById('item-image');
+        const itemCite = document.getElementById('item-citations');
         // TODO add citations?
-        if (itemBlocker && itemInfo && itemTitle && itemDesc && itemYear && itemMedium && itemLink && itemImage) {
+        if (itemBlocker && itemInfo && itemTitle && itemDesc && itemYear && itemMedium && itemLoc && itemLink && itemImage && itemCite) {
             if (data.hasOwnProperty(objectName) ){
                 itemTitle.textContent = objectName;
                 itemDesc.textContent = data[objectName].desc;
                 itemYear.textContent = data[objectName].year;
                 itemMedium.textContent = data[objectName].medium;
+                itemLoc.textContent = data[objectName].location;
                 itemLink.setAttribute("href", data[objectName].link);
                 itemImage.setAttribute("alt", data[objectName].alt);
                 itemImage.setAttribute("src", data[objectName].image);
+                itemCite.textContent = data[objectName].citations[0]
             }
             itemBlocker.style.display = 'block';
             itemInfo.style.display = '';
