@@ -113,23 +113,33 @@ nav ul li a:hover{
     color:rgb(8, 0, 59);
     padding: 30px;
     text-align: center;
+    text-decoration: underline;
+    text-underline-offset:12px; 
+    text-decoration-thickness: 2px;
 }
 
 .about{
     display: block;
     padding-left: 100px;
     padding-right: 100px;
+    padding-bottom: 100px;
     text-align: center;
-    font-size: 1.25em;
+    font-size: 1.5em;
     line-height: 150%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+  
 }
 
 
 .timeline-title{
   font-size: 2.5em;
   color: rgb(8, 0, 59);
-  padding-top: 150px;
   text-align: center;
+  background-color: rgb(236, 251, 255);
+  padding-top: 170px;
+  padding-bottom: 60px;
+  border-bottom: 4px solid rgb(8, 0, 59);
 }
 
 /*Timeline*/
@@ -181,13 +191,13 @@ nav ul li a:hover{
 .timeline ul li:nth-child(odd) div{
   left: 50px;
   transform: translateX(200px);
-  box-shadow: 20px 20px 40px rgba(104, 128, 136, 0.5);
+  box-shadow: 10px 10px 30px rgba(104, 128, 136, 0.5);
 }
 
 .timeline ul li:nth-child(even) div{
   left: calc(-400px - 80px + 6px);
   transform: translateX(-200px);
-  box-shadow: -20px 20px 40px rgba(104, 128, 136, 0.5);
+  box-shadow: -10px 10px 30px rgba(104, 128, 136, 0.5);
 }
 
 .timeline ul li.in-view:after{
@@ -215,6 +225,7 @@ nav ul li a:hover{
 .img-time{
   max-width: 400px;
 }
+
 
 /*3D app*/
 .nav-link {
