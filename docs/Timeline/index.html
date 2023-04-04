@@ -11,11 +11,32 @@
     <link rel="icon" type="image/x-icon" href="../img/Face_of_David.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-  <script type="module" crossorigin src="../assets/timeline-94c09bd6.js"></script>
+  <script type="module" crossorigin src="../assets/timeline-05cec61b.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/modulepreload-polyfill-3cfb730f.js">
-  <link rel="stylesheet" href="../assets/style-15f42293.css">
+  <link rel="stylesheet" href="../assets/style-bae30e90.css">
 </head>
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"> Top &uarr;</button>
+    <script>
+        let mybutton = document.getElementById("myBtn");
+    
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+    
     
     <nav>
         <ul>
