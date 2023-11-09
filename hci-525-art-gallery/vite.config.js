@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  base: '/HCI-525-Group-Project/',
   build: {
     rollupOptions: {
       input: {
